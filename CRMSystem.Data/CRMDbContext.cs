@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CRMSystem.Models;
+using CRMSystem.Server.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using CRMSystem.Server.Models;
 
-namespace CRMSystem.Server.Data
+namespace CRMSystem.Data
 {
     public class CRMDbContext : IdentityDbContext<User>
     {
@@ -14,6 +11,10 @@ namespace CRMSystem.Server.Data
             : base(options)
         {
         }
+
+        public virtual DbSet<Product> Products { get; set; }
+
+        public virtual DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -123,6 +123,10 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Properties\PublishProfiles\botcrmsystem - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\botcrmsystem - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\CRMSystemBot - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\CRMSystemBot - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
