@@ -112,9 +112,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Common\CommonCallbacks.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\LUISDialog.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
+    <Compile Include="Extensions\FormExtensions.cs" />
+    <Compile Include="FormDialogs\Base\BaseForm.cs" />
+    <Compile Include="FormDialogs\Base\IBaseForm.cs" />
+    <Compile Include="FormDialogs\GetInfoForm.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

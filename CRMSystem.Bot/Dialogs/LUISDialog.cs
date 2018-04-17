@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using CRMSystem.Bot.Common;
+using CRMSystem.Bot.Extensions;
+using CRMSystem.Bot.FormDialogs;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
@@ -13,6 +16,12 @@ namespace CRMSystem.Bot.Dialogs
     [Serializable]
     public class LUISDialog : LuisDialog<object>
     {
+        private CommonCallbacks callback;
+        public LUISDialog()
+        {
+            this.callback = new CommonCallbacks();
+        }
+
         #region Default Intents
 
         [LuisIntent("None")]
@@ -69,8 +78,7 @@ namespace CRMSystem.Bot.Dialogs
         [LuisIntent("getinfo")]
         public async Task GetInfo(IDialogContext context, LuisResult result)
         {
-            ///await context.PostAsync("I'm sorry I don't know what you mean.");
-            context.Wait(MessageReceived);
+            context.Call(new GetInfoForm()., callback.CallbackGlobal); 
         }
 
         [LuisIntent("getstatus")]
