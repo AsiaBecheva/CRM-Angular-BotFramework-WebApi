@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using CRMSystem.Bot.Dialogs;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
@@ -18,7 +19,7 @@ namespace CRMSystem.Bot
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
+                await Conversation.SendAsync(activity, MakeRootDialog);
             }
             else
             {
@@ -55,6 +56,11 @@ namespace CRMSystem.Bot
             }
 
             return null;
+        }
+
+        internal static IDialog<object> MakeRootDialog()
+        {
+            return Chain.From(() => new LUISDialog());
         }
     }
 }
