@@ -22,8 +22,6 @@ namespace CRMSystem.Models
 
         public string Email { get; set; }
 
-        public string Info { get; set; }
-
         public DateTime AddedOn { get; set; }
 
         public virtual ICollection<Product> SalledProducts

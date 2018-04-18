@@ -11,6 +11,7 @@ namespace CRMSystem.Bot.Common
         {
             await context.PostAsync("May I help you with something else?");
             context.Wait(MessageReceived);
+            context.Done("");
         }
     }
 }
