@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using CRMSystem.Bot.Common;
-using CRMSystem.Bot.Extensions;
 using CRMSystem.Bot.FormDialogs;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.FormFlow;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
 
@@ -78,14 +78,17 @@ namespace CRMSystem.Bot.Dialogs
         [LuisIntent("getinfo")]
         public async Task GetInfo(IDialogContext context, LuisResult result)
         {
-            context.Call(new GetInfoForm()., callback.CallbackGlobal); 
+            GetInfoForm getInfoForm = new GetInfoForm();
+            var form = new FormDialog<GetInfoForm>(new GetInfoForm(), new BuildFormDelegate<GetInfoForm>(getInfoForm.BuildForm), FormOptions.PromptInStart);
+            context.Call<GetInfoForm>(form, callback.CallbackGlobal); 
         }
 
         [LuisIntent("getstatus")]
         public async Task GetStatus(IDialogContext context, LuisResult result)
         {
-            ///await context.PostAsync("I'm sorry I don't know what you mean.");
-            context.Wait(MessageReceived);
+            GetStatusForm getStatusForm = new GetStatusForm();
+            var form = new FormDialog<GetStatusForm>(new GetStatusForm(), new BuildFormDelegate<GetStatusForm>(getStatusForm.BuildForm), FormOptions.PromptInStart);
+            context.Call<GetStatusForm>(form, callback.CallbackGlobal);
         }
 
         [LuisIntent("getphone")]
