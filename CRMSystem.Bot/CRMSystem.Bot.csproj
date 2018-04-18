@@ -118,7 +118,9 @@
     <Compile Include="Dialogs\RootDialog.cs" />
     <Compile Include="FormDialogs\Base\BaseForm.cs" />
     <Compile Include="FormDialogs\Base\IBaseForm.cs" />
+    <Compile Include="FormDialogs\GetEmailForm.cs" />
     <Compile Include="FormDialogs\GetInfoForm.cs" />
+    <Compile Include="FormDialogs\GetPhoneForm.cs" />
     <Compile Include="FormDialogs\GetStatusForm.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

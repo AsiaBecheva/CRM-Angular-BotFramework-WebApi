@@ -9,12 +9,12 @@ namespace CRMSystem.Bot.FormDialogs
     [Serializable]
     public class GetInfoForm : BaseForm<GetInfoForm>
     {
-        [Prompt("Please enter Client Name")]
+        [Prompt("Please enter Client Name for information.")]
         public string ClientName { get; set; }
 
         public override IForm<GetInfoForm> BuildForm()
         {
-            OnCompletionAsyncDelegate<GetInfoForm> OnProcessGetInfo = async (context, state) =>
+            OnCompletionAsyncDelegate<GetInfoForm> onProcessGetInfo = async (context, state) =>
             {
                 ///getting client info from the database
                 StringBuilder sb = new StringBuilder();
@@ -38,7 +38,7 @@ namespace CRMSystem.Bot.FormDialogs
 
             return new FormBuilder<GetInfoForm>()
                .Field(nameof(ClientName))
-               .OnCompletion(OnProcessGetInfo)
+               .OnCompletion(onProcessGetInfo)
                .Build();
         }
     }

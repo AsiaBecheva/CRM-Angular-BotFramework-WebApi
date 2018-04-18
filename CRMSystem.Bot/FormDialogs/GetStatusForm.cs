@@ -8,7 +8,7 @@ namespace CRMSystem.Bot.FormDialogs
     [Serializable]
     public class GetStatusForm : BaseForm<GetStatusForm>
     {
-        [Prompt("Please enter Client Name")]
+        [Prompt("Please enter Client Name for status")]
         public string ClientName { get; set; }
 
         public override IForm<GetStatusForm> BuildForm()
@@ -18,13 +18,13 @@ namespace CRMSystem.Bot.FormDialogs
                 ///getting id and status from the database
                 var id = "454212";
                 var status = "active";
-                await context.PostAsync($"Client with ID: {id} " + Environment.NewLine  +  $" Status: {status}");
+                await context.PostAsync($"Client with ID: {id};" +  $" Status: {status}");
             };
             
             return new FormBuilder<GetStatusForm>()
-            .Field(nameof(ClientName))
-            .OnCompletion(onCompletionAsyncDelegate)
-            .Build();
+                .Field(nameof(ClientName))
+                .OnCompletion(onCompletionAsyncDelegate)
+                .Build();
         }
     }
 }

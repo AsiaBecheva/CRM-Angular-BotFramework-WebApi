@@ -94,15 +94,17 @@ namespace CRMSystem.Bot.Dialogs
         [LuisIntent("getphone")]
         public async Task GetPhone(IDialogContext context, LuisResult result)
         {
-            ///await context.PostAsync("I'm sorry I don't know what you mean.");
-            context.Wait(MessageReceived);
+            GetPhoneForm getPhoneForm = new GetPhoneForm();
+            var form = new FormDialog<GetPhoneForm>(new GetPhoneForm(), new BuildFormDelegate<GetPhoneForm>(getPhoneForm.BuildForm), FormOptions.PromptInStart);
+            context.Call<GetPhoneForm>(form, callback.CallbackGlobal);
         }
 
         [LuisIntent("getemail")]
         public async Task GetEmail(IDialogContext context, LuisResult result)
         {
-            ///await context.PostAsync("I'm sorry I don't know what you mean.");
-            context.Wait(MessageReceived);
+            GetEmailForm getEmailForm = new GetEmailForm();
+            var form = new FormDialog<GetEmailForm>(new GetEmailForm(), new BuildFormDelegate<GetEmailForm>(getEmailForm.BuildForm), FormOptions.PromptInStart);
+            context.Call<GetEmailForm>(form, callback.CallbackGlobal);
         }
 
         #endregion
