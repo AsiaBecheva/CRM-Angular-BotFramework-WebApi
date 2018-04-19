@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace CRMSystem.Models
+﻿namespace CRMSystem.Models
 {
     public class Product
     {

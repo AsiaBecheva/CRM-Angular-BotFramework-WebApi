@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using CRMSystem.Bot.FormDialogs.Base;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.FormFlow;
@@ -13,13 +14,13 @@ namespace CRMSystem.Bot.FormDialogs
 
         public override IForm<GetPhoneForm> BuildForm()
         {
-            OnCompletionAsyncDelegate<GetPhoneForm> onProcessGetPhone = async (context, state) =>
+            async Task onProcessGetPhone(IDialogContext context, GetPhoneForm state)
             {
                 ///getting phone from the database
                 var id = "454544";
                 var phone = "0886547822";
                 await context.PostAsync($"Client with ID: {id};" + $" Phone: {phone}");
-            };
+            }
 
             return new FormBuilder<GetPhoneForm>()
                 .Field(nameof(ClientName))

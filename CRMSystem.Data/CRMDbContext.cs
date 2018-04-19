@@ -1,5 +1,4 @@
 ﻿using CRMSystem.Models;
-using CRMSystem.Server.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

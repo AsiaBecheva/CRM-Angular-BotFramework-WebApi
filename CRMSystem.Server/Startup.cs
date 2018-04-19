@@ -1,5 +1,5 @@
-﻿using CRMSystem.Server.Data;
-using CRMSystem.Server.Models;
+﻿using CRMSystem.Data;
+using CRMSystem.Models;
 using CRMSystem.Server.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

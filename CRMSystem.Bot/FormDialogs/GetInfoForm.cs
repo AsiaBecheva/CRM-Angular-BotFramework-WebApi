@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Threading.Tasks;
 using CRMSystem.Bot.FormDialogs.Base;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.FormFlow;
@@ -14,18 +15,18 @@ namespace CRMSystem.Bot.FormDialogs
 
         public override IForm<GetInfoForm> BuildForm()
         {
-            OnCompletionAsyncDelegate<GetInfoForm> onProcessGetInfo = async (context, state) =>
+            async Task onProcessGetInfo(IDialogContext context, GetInfoForm state)
             {
                 ///getting client info from the database
                 StringBuilder sb = new StringBuilder();
-                
+
                 var id = "454545";
                 var phone = "0884616161";
                 var email = "asyabeche@gmail.com";
                 DateTime addedOn = DateTime.Now;
                 var status = "active";
                 var additionalInformation = "has multiple supermarkets.";
-                
+
                 sb.AppendLine($"ID: {id};  ");
                 sb.AppendLine($"Phone: {phone};  ");
                 sb.AppendLine($"Email: {email};  ");
@@ -34,7 +35,7 @@ namespace CRMSystem.Bot.FormDialogs
                 sb.AppendLine($"Additional information: {additionalInformation}.");
 
                 await context.PostAsync(sb.ToString());
-            };
+            }
 
             return new FormBuilder<GetInfoForm>()
                .Field(nameof(ClientName))

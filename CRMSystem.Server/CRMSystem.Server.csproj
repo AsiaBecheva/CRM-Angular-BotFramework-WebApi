@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CRMSystem.Data\CRMSystem.Data.csproj" />
     <ProjectReference Include="..\CRMSystem.Models\CRMSystem.Models.csproj" />
   </ItemGroup>
 
