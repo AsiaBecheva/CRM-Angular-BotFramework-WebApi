@@ -9,7 +9,7 @@ using Microsoft.Bot.Builder.Luis.Models;
 
 namespace CRMSystem.Bot.Dialogs
 {
-    [LuisModel("5a7a50bb-eb63-441e-a497-5339339eda70", "2cfe175785d1493da0345f5521d329c0")]
+    [LuisModel("e1285952-1259-4557-ae16-75c76c79ba76", "0b12cdf9a6244cc58693f5cf9a77a334", domain: "westeurope.api.cognitive.microsoft.com")]
     [Serializable]
     public class LUISDialog : LuisDialog<object>
     {

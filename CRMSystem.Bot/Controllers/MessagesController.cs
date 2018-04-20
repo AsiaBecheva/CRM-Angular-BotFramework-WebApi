@@ -1,9 +1,12 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Autofac;
 using CRMSystem.Bot.Dialogs;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.Dialogs.Internals;
 using Microsoft.Bot.Connector;
 
 namespace CRMSystem.Bot
@@ -23,18 +26,40 @@ namespace CRMSystem.Bot
             }
             else
             {
-                HandleSystemMessage(activity);
+                HandleSystemMessageAsync(activity);
             }
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
 
-        private Activity HandleSystemMessage(Activity message)
+        private async Task<Activity> HandleSystemMessageAsync(Activity message)
         {
             if (message.Type == ActivityTypes.DeleteUserData)
             {
                 // Implement user deletion here
                 // If we handle user deletion, return a real message
+            }
+            else if (message.Type == ActivityTypes.ConversationUpdate)
+            {
+                // Handle conversation state changes, like members being added and removed
+                // Use Activity.MembersAdded and Activity.MembersRemoved and Activity.Action for info
+                // Not available in all channels
+
+                IConversationUpdateActivity update = message;
+                using (var scope = DialogModule.BeginLifetimeScope(Conversation.Container, message))
+                {
+                    var client = scope.Resolve<IConnectorClient>();
+
+                    if (update.MembersAdded.Any())
+                    {
+                        foreach (var newMember in update.MembersAdded)
+                        {
+                            var reply = message.CreateReply();
+                            reply.Text = $"Welcome!";
+                            await client.Conversations.ReplyToActivityAsync(reply);
+                        }
+                    }
+                }
             }
             else if (message.Type == ActivityTypes.ConversationUpdate)
             {
