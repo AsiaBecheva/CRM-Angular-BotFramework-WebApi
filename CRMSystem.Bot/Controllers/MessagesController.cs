@@ -20,39 +20,39 @@ namespace CRMSystem.Bot
         /// </summary>
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
-            if (activity.Type == ActivityTypes.ConversationUpdate)
-            {
-                IConversationUpdateActivity update = activity;
-                using (var scope = DialogModule.BeginLifetimeScope(Conversation.Container, activity))
-                {
-                    var client = scope.Resolve<IConnectorClient>();
-                    if (update.MembersAdded.Any())
-                    {
-                        foreach (var newMember in update.MembersAdded)
-                        {
-                            if (newMember.Id != activity.Recipient.Id)
-                            {
-                                var reply = activity.CreateReply();
-                                reply.Text = $"Hello {newMember.Name}!";
-                                await client.Conversations.ReplyToActivityAsync(reply);
-                            }
-                        }
-                    }
-                }
-            }
+            //if (activity.Type == ActivityTypes.ConversationUpdate)
+            //{
+            //    IConversationUpdateActivity update = activity;
+            //    using (var scope = DialogModule.BeginLifetimeScope(Conversation.Container, activity))
+            //    {
+            //        var client = scope.Resolve<IConnectorClient>();
+            //        if (update.MembersAdded.Any())
+            //        {
+            //            foreach (var newMember in update.MembersAdded)
+            //            {
+            //                if (newMember.Id != activity.Recipient.Id)
+            //                {
+            //                    var reply = activity.CreateReply();
+            //                    reply.Text = $"Hello {newMember.Name}!";
+            //                    await client.Conversations.ReplyToActivityAsync(reply);
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
             if (activity.Type == ActivityTypes.Message)
             {
                 await Conversation.SendAsync(activity, MakeRootDialog);
             }
             else
             {
-                HandleSystemMessage(activity);
+                HandleSystemMessageAsync(activity);
             }
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
 
-        private Activity HandleSystemMessage(Activity message)
+        private async Task<Activity> HandleSystemMessageAsync(Activity message)
         {
             if (message.Type == ActivityTypes.DeleteUserData)
             {
@@ -61,9 +61,23 @@ namespace CRMSystem.Bot
             }
             else if (message.Type == ActivityTypes.ConversationUpdate)
             {
-                // Handle conversation state changes, like members being added and removed
-                // Use Activity.MembersAdded and Activity.MembersRemoved and Activity.Action for info
-                // Not available in all channels
+                IConversationUpdateActivity iConversationUpdated = message as IConversationUpdateActivity;
+                if (iConversationUpdated != null)
+                {
+                    ConnectorClient connector = new ConnectorClient(new System.Uri(message.ServiceUrl));
+
+                    foreach (var member in iConversationUpdated.MembersAdded ?? System.Array.Empty<ChannelAccount>())
+                    {
+                        // if the bot is added, then
+                        if (member.Id == iConversationUpdated.Recipient.Id)
+                        {
+
+                            var reply = ((Activity)iConversationUpdated).CreateReply(
+                                $"Hi! I'm Botty.");
+                            await connector.Conversations.ReplyToActivityAsync(reply);
+                        }
+                    }
+                }
             }
             else if (message.Type == ActivityTypes.ContactRelationUpdate)
             {
