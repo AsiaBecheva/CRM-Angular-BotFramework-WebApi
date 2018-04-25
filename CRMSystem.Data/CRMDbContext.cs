@@ -11,15 +11,17 @@ namespace CRMSystem.Data
         {
         }
 
-        public virtual DbSet<Product> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
 
-        public virtual DbSet<Customer> Customers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<CustomerProduct> CustomerProducts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
-                .Entity<Customer>()
-                .HasMany(x => x.SalledProducts);
+                .Entity<CustomerProduct>()
+                .HasKey(cp => new { cp.CustomerId, cp.ProductId });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

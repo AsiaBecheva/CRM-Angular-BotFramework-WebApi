@@ -28,6 +28,6 @@ namespace CRMSystem.Models
 
         public DateTime AddedOn { get; set; }
 
-        public List<Product> SalledProducts { get; set; } = new List<Product>();
+        public ICollection<CustomerProduct> SalledProducts { get; set; } = new List<CustomerProduct>();
     }
 }

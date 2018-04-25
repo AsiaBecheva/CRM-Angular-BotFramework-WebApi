@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CRMSystem.Models
 {
@@ -15,5 +16,7 @@ namespace CRMSystem.Models
 
         [Range(0, int.MaxValue)]
         public decimal Price { get; set; }
+
+        public ICollection<CustomerProduct> Customers { get; set; } = new List<CustomerProduct>();
     }
 }
