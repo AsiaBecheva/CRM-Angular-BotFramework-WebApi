@@ -61,8 +61,7 @@ namespace CRMSystem.Bot
             }
             else if (message.Type == ActivityTypes.ConversationUpdate)
             {
-                IConversationUpdateActivity iConversationUpdated = message as IConversationUpdateActivity;
-                if (iConversationUpdated != null)
+                if (message is IConversationUpdateActivity iConversationUpdated)
                 {
                     ConnectorClient connector = new ConnectorClient(new System.Uri(message.ServiceUrl));
 

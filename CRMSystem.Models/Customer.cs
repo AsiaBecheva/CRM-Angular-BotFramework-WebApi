@@ -1,33 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CRMSystem.Models
 {
     public class Customer
     {
-        private ICollection<Product> salledProducts;
-
         public Customer()
         {
-            this.salledProducts = new HashSet<Product>();
+            this.AddedOn = DateTime.Now;
         }
 
         public int Id { get; set; }
 
+        [Required]
+        [MaxLength(100)]
         public string Name { get; set; }
 
-        public string Status { get; set; }
+        [Required]
+        public Status Status { get; set; }
 
+        [MaxLength(20)]
         public int Phone { get; set; }
 
+        [MaxLength(40)]
         public string Email { get; set; }
 
         public DateTime AddedOn { get; set; }
 
-        public virtual ICollection<Product> SalledProducts
-        {
-            get { return this.salledProducts; }
-            set { this.salledProducts = value; }
-        }
+        public List<Product> SalledProducts { get; set; } = new List<Product>();
     }
 }
