@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +18,20 @@ namespace CRMSystem.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<IISOptions>(options =>
+            {
+                options.AutomaticAuthentication = true;
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("OnlyEmployees", policy =>
+                {
+                    policy.AddAuthenticationSchemes(IISDefaults.AuthenticationScheme);
+                    policy.RequireRole("S - 1 - 5 - 4");
+                });
+            });
+
             services.AddMvc();
         }
 
@@ -28,6 +43,7 @@ namespace CRMSystem.Server
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
