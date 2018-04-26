@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CRMSystem.Server.Extensions;
+using AutoMapper;
 
 namespace CRMSystem.Server
 {
@@ -38,12 +40,16 @@ namespace CRMSystem.Server
                 });
             });
 
+            services.AddAutoMapper();
+            services.AddServices();
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.AddingMigration();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
