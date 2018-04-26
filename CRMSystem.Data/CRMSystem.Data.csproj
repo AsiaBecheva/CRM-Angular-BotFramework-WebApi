@@ -119,6 +119,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CRMDbContext.cs" />
+    <Compile Include="Migrations\20180426080828_CrmSystem.cs" />
+    <Compile Include="Migrations\20180426080828_CrmSystem.designer.cs">
+      <DependentUpon>20180426080828_CrmSystem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CRMDbContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />

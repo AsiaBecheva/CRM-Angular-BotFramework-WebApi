@@ -31,14 +31,6 @@ namespace CRMSystem.Data.Repository
             }
         }
 
-        public IRepository<User> Users
-        {
-            get
-            {
-                return this.GetRepository<User>();
-            }
-        }
-
         private IRepository<T> GetRepository<T>() where T : class
         {
             if (!this.repositories.ContainsKey(typeof(T)))

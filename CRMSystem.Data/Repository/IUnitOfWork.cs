@@ -11,8 +11,6 @@ namespace CRMSystem.Data.Repository
 
         IRepository<Product> Products { get; }
 
-        IRepository<User> Users { get; }
-
         void Dispose();
 
         int SaveChanges();

@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using CRMSystem.Data;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.IISIntegration;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,6 +20,10 @@ namespace CRMSystem.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services
+                .AddDbContext<CRMDbContext>(opt => opt.
+                UseSqlServer(Configuration.GetConnectionString("CRMSystem")));
+
             services.Configure<IISOptions>(options =>
             {
                 options.AutomaticAuthentication = true;
