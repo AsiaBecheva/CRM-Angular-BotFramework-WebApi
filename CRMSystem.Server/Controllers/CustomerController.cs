@@ -1,42 +1,34 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace CRMSystem.Server.Controllers
 {
-    ///[Authorize(Roles = "Employees", Policy = "OnlyEmployees")]
+    //[Authorize(Roles = "Employees", Policy = "OnlyEmployees")]
     [Route("api/[controller]")]
-    public class CustomerController : Controller
+    public class CustomerController : BaseController
     {
-        // GET: api/<controller>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET api/<controller>/name
+        [HttpGet("{name}")]
+        public string GetEmail(string name)
         {
             return "value";
         }
 
-        // POST api/<controller>
-        [HttpPost]
-        public void Post([FromBody]string value)
+        [HttpGet("{name}")]
+        public string GetStatus(string name)
         {
+            return "value";
         }
 
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpGet("{name}")]
+        public string GetPhone(string name)
         {
+            return "value";
         }
 
-        // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpGet("{name}")]
+        public string GetInfo(string name)
         {
+            return "value";
         }
     }
 }
