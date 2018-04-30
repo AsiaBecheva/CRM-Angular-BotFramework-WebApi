@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using CRMSystem.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRMSystem.Data.Repository
 {
-    public class UnitOfWork
+    public class UnitOfWork: IUnitOfWork
     {
         private readonly CRMDbContext cRMDbContext;
 
@@ -29,6 +30,11 @@ namespace CRMSystem.Data.Repository
             {
                 return this.GetRepository<Product>();
             }
+        }
+
+        public int SaveChanges()
+        {
+            return this.cRMDbContext.SaveChanges();
         }
 
         private IRepository<T> GetRepository<T>() where T : class

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
-using CRMSystem.Common.Mapping;
 using CRMSystem.Models;
+using CRMSystem.Services.Mapping;
 
 namespace CRMSystem.Services.Models
 {

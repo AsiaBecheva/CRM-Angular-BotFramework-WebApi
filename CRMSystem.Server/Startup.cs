@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CRMSystem.Server.Extensions;
 using AutoMapper;
+using CRMSystem.Data.Repository;
 
 namespace CRMSystem.Server
 {
@@ -40,8 +41,11 @@ namespace CRMSystem.Server
                 });
             });
 
+            ///services.AddServices();
             services.AddAutoMapper();
-            services.AddServices();
+            services.AddRouting(r => r.LowercaseUrls = true);
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddMvc();
         }
 
@@ -56,7 +60,11 @@ namespace CRMSystem.Server
             }
 
             app.UseAuthentication();
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("Customer", "{controller=Customer}/action=GetStatus/{nameForStatus?}");
+                routes.MapRoute("default","{controller}/{action}/{id?}");
+            });
         }
     }
 }

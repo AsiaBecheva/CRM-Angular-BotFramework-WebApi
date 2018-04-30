@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using AutoMapper.QueryableExtensions;
 using CRMSystem.Data;
-using CRMSystem.Data.Repository;
 using CRMSystem.Services.Models;
 
 namespace CRMSystem.Services.Implementations
