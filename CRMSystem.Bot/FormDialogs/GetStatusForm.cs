@@ -21,8 +21,8 @@ namespace CRMSystem.Bot.FormDialogs
                 var customer = GetDatabase.GetContext().Customers.Where(c => c.Name == state.ClientName)
                 .FirstOrDefault();
 
-                var id = "454212";
-                var status = "active";
+                var id = customer.Id;
+                var status = customer.Status;
                 await context.PostAsync($"Client with ID: {id};" + $" Status: {status}");
             }
 
