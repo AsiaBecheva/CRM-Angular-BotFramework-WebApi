@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CRMSystem.Data\CRMSystem.Data.csproj" />
     <ProjectReference Include="..\CRMSystem.Services\CRMSystem.Services.csproj" />
+	<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.0.1" />
   </ItemGroup>
 
 </Project>

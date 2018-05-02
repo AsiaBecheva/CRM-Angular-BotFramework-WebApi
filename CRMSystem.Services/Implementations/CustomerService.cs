@@ -1,23 +1,38 @@
-﻿using System.Linq;
-using AutoMapper.QueryableExtensions;
-using CRMSystem.Data;
+﻿using System;
+using System.Linq;
+using CRMSystem.Data.Repository;
+using CRMSystem.Implementations.Services;
 using CRMSystem.Services.Models;
 
 namespace CRMSystem.Services.Implementations
 {
     public class CustomerService : ICustomerService
     {
-        private readonly CRMDbContext db;
+        private readonly IUnitOfWork db;
 
-        public CustomerService(CRMDbContext db)
+        public CustomerService(IUnitOfWork db)
         {
             this.db = db;
         }
 
         public CustomerServiceModel Info(string name)
-            => this.db.Customers
+        {
+            var customer = this.db.Customers.All()
             .Where(x => x.Name == name)
-            .ProjectTo<CustomerServiceModel>()
             .FirstOrDefault();
+
+            CustomerServiceModel model = new CustomerServiceModel
+            {
+                AddedOn = DateTime.Now,
+                Email = customer.Email,
+                Name = customer.Name,
+                Phone = customer.Phone,
+                Status = customer.Status,
+                Id = customer.Id,
+                SalledProducts = customer.SalledProducts
+            };
+
+            return model;
+        }
     }
 }

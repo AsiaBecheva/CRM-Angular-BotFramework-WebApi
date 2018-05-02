@@ -121,8 +121,7 @@
     <Compile Include="Mapping\IHaveCustomMapping.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />
     <Compile Include="Models\CustomerServiceModel.cs" />
-    <Compile Include="ICustomerService.cs" />
-    <Compile Include="IService.cs" />
+    <Compile Include="Interfaces\ICustomerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

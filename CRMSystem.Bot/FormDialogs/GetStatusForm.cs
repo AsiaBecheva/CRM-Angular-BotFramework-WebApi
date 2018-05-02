@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using CRMSystem.Bot.Common;
 using CRMSystem.Bot.FormDialogs.Base;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.FormFlow;
@@ -16,7 +18,9 @@ namespace CRMSystem.Bot.FormDialogs
         {
             async Task onCompletionAsyncDelegate(IDialogContext context, GetStatusForm state)
             {
-                ///getting id and status from the database
+                var customer = GetDatabase.GetContext().Customers.Where(c => c.Name == state.ClientName)
+                .FirstOrDefault();
+
                 var id = "454212";
                 var status = "active";
                 await context.PostAsync($"Client with ID: {id};" + $" Status: {status}");

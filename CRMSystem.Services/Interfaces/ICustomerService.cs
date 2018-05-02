@@ -1,6 +1,6 @@
 ﻿using CRMSystem.Services.Models;
 
-namespace CRMSystem.Services
+namespace CRMSystem.Implementations.Services
 {
     public interface ICustomerService 
     {

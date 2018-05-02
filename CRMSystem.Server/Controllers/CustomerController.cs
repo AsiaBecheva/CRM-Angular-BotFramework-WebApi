@@ -1,9 +1,6 @@
-﻿using CRMSystem.Data;
-using CRMSystem.Data.Repository;
-using CRMSystem.Models;
+﻿using System.Text;
+using CRMSystem.Implementations.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Text;
 
 namespace CRMSystem.Server.Controllers
 {
@@ -11,11 +8,11 @@ namespace CRMSystem.Server.Controllers
     ///[Route("api/[controller]")]
     public class CustomerController : Controller
     {
-        private readonly IUnitOfWork db;
+        private readonly ICustomerService customers;
 
-        public CustomerController(IUnitOfWork db)
+        public CustomerController(ICustomerService customers)
         {
-            this.db = db;
+            this.customers = customers;
         }
 
         [HttpGet]
@@ -27,7 +24,7 @@ namespace CRMSystem.Server.Controllers
                 return this.BadRequest();
             }
 
-            var customer = TakeCustomer(nameForEmail);
+            var customer = customers.Info(nameForEmail);
 
             if (customer == null)
             {
@@ -48,7 +45,7 @@ namespace CRMSystem.Server.Controllers
                 return this.BadRequest();
             }
 
-            var customer = TakeCustomer(nameForStatus);
+            var customer = customers.Info(nameForStatus);
 
             if (customer == null)
             {
@@ -69,7 +66,7 @@ namespace CRMSystem.Server.Controllers
                 return this.BadRequest();
             }
 
-            var customer = TakeCustomer(nameForPhone);
+            var customer = customers.Info(nameForPhone);
 
             if (customer == null)
             {
@@ -90,7 +87,7 @@ namespace CRMSystem.Server.Controllers
                 return this.BadRequest();
             }
 
-            var customer = TakeCustomer(nameForInfo);
+            var customer = customers.Info(nameForInfo);
 
             if (customer == null)
             {
@@ -105,15 +102,6 @@ namespace CRMSystem.Server.Controllers
             info.AppendLine($"Status: {customer.Status};  ");
             
             return this.Ok(info);
-        }
-
-        private Customer TakeCustomer(string name)
-        {
-            var customer = this.db.Customers.All()
-                .Where(c => c.Name == name)
-                .FirstOrDefault();
-
-            return customer;
         }
     }
 }

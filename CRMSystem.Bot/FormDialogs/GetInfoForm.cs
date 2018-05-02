@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CRMSystem.Bot.Common;
 using CRMSystem.Bot.FormDialogs.Base;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.FormFlow;
@@ -17,22 +19,24 @@ namespace CRMSystem.Bot.FormDialogs
         {
             async Task onProcessGetInfo(IDialogContext context, GetInfoForm state)
             {
-                ///getting client info from the database
+                var customer = GetDatabase.GetContext().Customers.Where(c => c.Name == state.ClientName)
+                 .FirstOrDefault();
+
                 StringBuilder sb = new StringBuilder();
 
-                var id = "454545";
-                var phone = "0884616161";
-                var email = "asyabeche@gmail.com";
-                DateTime addedOn = DateTime.Now;
-                var status = "active";
-                var additionalInformation = "has multiple supermarkets.";
+                var id = customer.Id;
+                var phone = customer.Phone;
+                var email = customer.Email;
+                DateTime addedOn = customer.AddedOn;
+                var status = customer.Status;
+                var salledProducts = customer.SalledProducts;
 
                 sb.AppendLine($"ID: {id};  ");
                 sb.AppendLine($"Phone: {phone};  ");
                 sb.AppendLine($"Email: {email};  ");
                 sb.AppendLine($"Added On: {addedOn};  ");
                 sb.AppendLine($"Status: {status};  ");
-                sb.AppendLine($"Additional information: {additionalInformation}.");
+                sb.AppendLine($"SalledProducts: {salledProducts.ToList()}.");
 
                 await context.PostAsync(sb.ToString());
             }

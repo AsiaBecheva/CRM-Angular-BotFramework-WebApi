@@ -59,25 +59,25 @@ namespace CRMSystem.Bot
                 // Implement user deletion here
                 // If we handle user deletion, return a real message
             }
-            else if (message.Type == ActivityTypes.ConversationUpdate)
-            {
-                //if (message is IConversationUpdateActivity iConversationUpdated)
-                //{
-                //    ConnectorClient connector = new ConnectorClient(new System.Uri(message.ServiceUrl));
+            //else if (message.Type == ActivityTypes.ConversationUpdate)
+            //{
+            //    if (message is IConversationUpdateActivity iConversationUpdated)
+            //    {
+            //        ConnectorClient connector = new ConnectorClient(new System.Uri(message.ServiceUrl));
 
-                //    foreach (var member in iConversationUpdated.MembersAdded ?? System.Array.Empty<ChannelAccount>())
-                //    {
-                //        // if the bot is added, then
-                //        if (member.Id == iConversationUpdated.Recipient.Id)
-                //        {
+            //        foreach (var member in iConversationUpdated.MembersAdded ?? System.Array.Empty<ChannelAccount>())
+            //        {
+            //            // if the bot is added, then
+            //            if (member.Id == iConversationUpdated.Recipient.Id)
+            //            {
 
-                //            var reply = ((Activity)iConversationUpdated).CreateReply(
-                //                $"Hi! I'm Botty.");
-                //            await connector.Conversations.ReplyToActivityAsync(reply);
-                //        }
-                //    }
-                //}
-            }
+            //                var reply = ((Activity)iConversationUpdated).CreateReply(
+            //                    $"Hi! I'm Botty.");
+            //                await connector.Conversations.ReplyToActivityAsync(reply);
+            //            }
+            //        }
+            //    }
+            //}
             else if (message.Type == ActivityTypes.ContactRelationUpdate)
             {
                 // Handle add/remove from contact lists

@@ -6,7 +6,7 @@ using CRMSystem.Services.Mapping;
 
 namespace CRMSystem.Services.Models
 {
-    public class CustomerServiceModel: IMapFrom<Customer>
+    public class CustomerServiceModel
     {
         public int Id { get; set; }
         
@@ -20,7 +20,7 @@ namespace CRMSystem.Services.Models
 
         public DateTime AddedOn { get; set; }
 
-        public IEnumerable<string> SalledProducts { get; set; }
+        public List<CustomerProduct> SalledProducts { get; set; }
 
         public void ConfigureMapping(Profile mapper)
             => mapper.CreateMap<Customer, CustomerServiceModel>();

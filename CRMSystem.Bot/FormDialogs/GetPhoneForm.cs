@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using CRMSystem.Bot.Common;
 using CRMSystem.Bot.FormDialogs.Base;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.FormFlow;
@@ -7,7 +9,7 @@ using Microsoft.Bot.Builder.FormFlow;
 namespace CRMSystem.Bot.FormDialogs
 {
     [Serializable]
-    public class GetPhoneForm: BaseForm<GetPhoneForm>
+    public class GetPhoneForm : BaseForm<GetPhoneForm>
     {
         [Prompt("Please enter Client Name for phone number")]
         public string ClientName { get; set; }
@@ -16,9 +18,11 @@ namespace CRMSystem.Bot.FormDialogs
         {
             async Task onProcessGetPhone(IDialogContext context, GetPhoneForm state)
             {
-                ///getting phone from the database
-                var id = "454544";
-                var phone = "0886547822";
+                var customer = GetDatabase.GetContext().Customers.Where(c => c.Name == state.ClientName)
+                .FirstOrDefault();
+
+                var id = customer.Id;
+                var phone = customer.Name;
                 await context.PostAsync($"Client with ID: {id};" + $" Phone: {phone}");
             }
 
