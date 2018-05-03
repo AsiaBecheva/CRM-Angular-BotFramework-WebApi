@@ -46,13 +46,13 @@ namespace CRMSystem.Bot
             }
             else
             {
-                HandleSystemMessageAsync(activity);
+                HandleSystemMessage(activity);
             }
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
 
-        private async Task<Activity> HandleSystemMessageAsync(Activity message)
+        private Activity HandleSystemMessage(Activity message)
         {
             if (message.Type == ActivityTypes.DeleteUserData)
             {

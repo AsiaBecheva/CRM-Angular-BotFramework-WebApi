@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CRMSystem.Models
 {
+    [Serializable]
     public class Product
     {
         public int Id { get; set; }

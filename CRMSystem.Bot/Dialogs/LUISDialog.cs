@@ -77,7 +77,7 @@ namespace CRMSystem.Bot.Dialogs
         {
             GetInfoForm getInfoForm = new GetInfoForm();
             var form = new FormDialog<GetInfoForm>(new GetInfoForm(), new BuildFormDelegate<GetInfoForm>(getInfoForm.BuildForm), FormOptions.PromptInStart);
-            context.Call<GetInfoForm>(form, callback.CallbackGlobal); 
+            context.Call<GetInfoForm>(form, callback.CallbackGlobal);
         }
 
         [LuisIntent("getstatus")]
@@ -102,6 +102,14 @@ namespace CRMSystem.Bot.Dialogs
             GetEmailForm getEmailForm = new GetEmailForm();
             var form = new FormDialog<GetEmailForm>(new GetEmailForm(), new BuildFormDelegate<GetEmailForm>(getEmailForm.BuildForm), FormOptions.PromptInStart);
             context.Call<GetEmailForm>(form, callback.CallbackGlobal);
+        }
+
+        [LuisIntent("addcustomer")]
+        public async Task AddCustomer(IDialogContext context, LuisResult result)
+        {
+            var getEmailForm = new AddCustomerForm();
+            var form = new FormDialog<AddCustomerForm>(new AddCustomerForm(), new BuildFormDelegate<AddCustomerForm>(getEmailForm.BuildForm), FormOptions.PromptInStart);
+            context.Call<AddCustomerForm>(form, callback.CallbackGlobal);
         }
 
         #endregion

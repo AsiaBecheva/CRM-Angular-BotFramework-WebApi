@@ -1,5 +1,8 @@
-﻿namespace CRMSystem.Models
+﻿using System;
+
+namespace CRMSystem.Models
 {
+    [Serializable]
     public enum Status
     {
         active = 0,

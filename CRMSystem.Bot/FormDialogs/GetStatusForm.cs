@@ -16,7 +16,7 @@ namespace CRMSystem.Bot.FormDialogs
 
         public override IForm<GetStatusForm> BuildForm()
         {
-            async Task onCompletionAsyncDelegate(IDialogContext context, GetStatusForm state)
+            async Task onProcessGetStatus(IDialogContext context, GetStatusForm state)
             {
                 var customer = GetDatabase.GetContext().Customers.Where(c => c.Name == state.ClientName)
                 .FirstOrDefault();
@@ -28,7 +28,7 @@ namespace CRMSystem.Bot.FormDialogs
 
             return new FormBuilder<GetStatusForm>()
                 .Field(nameof(ClientName))
-                .OnCompletion(onCompletionAsyncDelegate)
+                .OnCompletion(onProcessGetStatus)
                 .Build();
         }
     }

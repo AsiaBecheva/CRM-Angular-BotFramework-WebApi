@@ -170,11 +170,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BotModels\BotCustomer.cs" />
     <Compile Include="Common\CommonCallbacks.cs" />
     <Compile Include="Common\GetDatabase.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\LUISDialog.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
+    <Compile Include="FormDialogs\AddCustomerForm.cs" />
     <Compile Include="FormDialogs\Base\BaseForm.cs" />
     <Compile Include="FormDialogs\Base\IBaseForm.cs" />
     <Compile Include="FormDialogs\GetEmailForm.cs" />
@@ -213,6 +215,7 @@
       <Name>CRMSystem.Models</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

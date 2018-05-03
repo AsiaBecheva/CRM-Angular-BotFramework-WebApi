@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CRMSystem.Implementations.Services;
 using CRMSystem.Services.Implementations;
 
 namespace CRMSystem.Services.Mapping

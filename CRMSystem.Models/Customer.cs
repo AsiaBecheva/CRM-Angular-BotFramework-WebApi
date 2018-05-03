@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CRMSystem.Models
 {
+    [Serializable]
     public class Customer
     {
         public Customer()
