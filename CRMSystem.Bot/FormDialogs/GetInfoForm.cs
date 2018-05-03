@@ -36,7 +36,10 @@ namespace CRMSystem.Bot.FormDialogs
                 sb.AppendLine($"Email: {email};  ");
                 sb.AppendLine($"Added On: {addedOn};  ");
                 sb.AppendLine($"Status: {status};  ");
-                sb.AppendLine($"SalledProducts: {salledProducts.ToList()}.");
+                for (int i = 0; i < salledProducts.Count; i++)
+                {
+                    sb.AppendLine($"Product{i + 1}: {salledProducts[i].Product.Name}.");
+                }
 
                 await context.PostAsync(sb.ToString());
             }

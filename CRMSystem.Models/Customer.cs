@@ -22,7 +22,7 @@ namespace CRMSystem.Models
         public Status Status { get; set; }
 
         [MaxLength(20)]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         [MaxLength(40)]
         public string Email { get; set; }

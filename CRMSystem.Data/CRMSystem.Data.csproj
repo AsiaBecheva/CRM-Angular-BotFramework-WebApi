@@ -120,9 +120,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CRMDbContext.cs" />
-    <Compile Include="Migrations\20180426080828_CrmSystem.cs" />
-    <Compile Include="Migrations\20180426080828_CrmSystem.designer.cs">
-      <DependentUpon>20180426080828_CrmSystem.cs</DependentUpon>
+    <Compile Include="Migrations\20180503130225_asd.cs" />
+    <Compile Include="Migrations\20180503130225_asd.designer.cs">
+      <DependentUpon>20180503130225_asd.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\CRMDbContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -22,7 +22,7 @@ namespace CRMSystem.Bot.FormDialogs
                 .FirstOrDefault();
 
                 var id = customer.Id;
-                var phone = customer.Name;
+                var phone = customer.Phone;
                 await context.PostAsync($"Client with ID: {id};" + $" Phone: {phone}");
             }
 

@@ -116,12 +116,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\CustomerService.cs" />
     <Compile Include="Mapping\AutoMapperProfile.cs" />
     <Compile Include="Mapping\IHaveCustomMapping.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />
     <Compile Include="Models\CustomerServiceModel.cs" />
-    <Compile Include="Interfaces\ICustomerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -23,7 +23,7 @@ namespace CRMSystem.Bot.FormDialogs
 
         [MaxLength(20)]
         [Prompt("Please enter Client phone number.")]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         [MaxLength(40)]
         [Prompt("Please enter Client Email.")]

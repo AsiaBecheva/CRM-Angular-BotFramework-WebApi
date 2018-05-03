@@ -1,10 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
+using System.Collections.Generic;
 
 namespace CRMSystem.Data.Migrations
 {
-    public partial class CrmSystem : Migration
+    public partial class asd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +18,7 @@ namespace CRMSystem.Data.Migrations
                     AddedOn = table.Column<DateTime>(nullable: false),
                     Email = table.Column<string>(maxLength: 40, nullable: true),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
-                    Phone = table.Column<int>(maxLength: 20, nullable: false),
+                    Phone = table.Column<string>(maxLength: 20, nullable: true),
                     Status = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

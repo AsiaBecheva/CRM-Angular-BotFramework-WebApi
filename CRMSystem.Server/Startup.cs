@@ -1,8 +1,6 @@
 ﻿using CRMSystem.Data;
 using CRMSystem.Data.Repository;
-using CRMSystem.Implementations.Services;
 using CRMSystem.Server.Extensions;
-using CRMSystem.Services.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.IISIntegration;
@@ -41,11 +39,10 @@ namespace CRMSystem.Server
                     policy.RequireRole("S - 1 - 5 - 4");
                 });
             });
-            
+
             services.AddRouting(r => r.LowercaseUrls = true);
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<ICustomerService, CustomerService>();
             services.AddMvc();
         }
 
@@ -60,11 +57,8 @@ namespace CRMSystem.Server
             }
 
             app.UseAuthentication();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute("Customer", "{controller=Customer}/action=GetStatus/{nameForStatus?}");
-                routes.MapRoute("default","{controller}/{action}/{id?}");
-            });
+            app.UseMvc();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

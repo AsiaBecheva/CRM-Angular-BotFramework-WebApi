@@ -12,8 +12,8 @@ using System;
 namespace CRMSystem.Data.Migrations
 {
     [DbContext(typeof(CRMDbContext))]
-    [Migration("20180426080828_CrmSystem")]
-    partial class CrmSystem
+    [Migration("20180503130225_asd")]
+    partial class asd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,7 +36,7 @@ namespace CRMSystem.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<int>("Phone")
+                    b.Property<string>("Phone")
                         .HasMaxLength(20);
 
                     b.Property<int>("Status");
