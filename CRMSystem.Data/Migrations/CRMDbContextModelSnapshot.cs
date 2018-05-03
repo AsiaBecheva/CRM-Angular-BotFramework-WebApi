@@ -85,7 +85,7 @@ namespace CRMSystem.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CRMSystem.Models.Product", "Product")
-                        .WithMany("Customers")
+                        .WithMany("SalledProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

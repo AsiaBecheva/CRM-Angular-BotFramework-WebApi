@@ -19,6 +19,6 @@ namespace CRMSystem.Models
         [Range(0, int.MaxValue)]
         public decimal Price { get; set; }
 
-        public ICollection<CustomerProduct> Customers { get; set; } = new List<CustomerProduct>();
+        public ICollection<CustomerProduct> SalledProducts { get; set; } = new List<CustomerProduct>();
     }
 }

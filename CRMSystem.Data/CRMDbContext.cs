@@ -18,9 +18,18 @@ namespace CRMSystem.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder
-                .Entity<CustomerProduct>()
+            builder.Entity<CustomerProduct>()
                 .HasKey(cp => new { cp.CustomerId, cp.ProductId });
+
+            builder.Entity<CustomerProduct>()
+                .HasOne(cp => cp.Customer)
+                .WithMany(c => c.SalledProducts)
+                .HasForeignKey(cp => cp.CustomerId);
+
+            builder.Entity<CustomerProduct>()
+                .HasOne(cp => cp.Product)
+                .WithMany(p => p.SalledProducts)
+                .HasForeignKey(cp => cp.ProductId);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

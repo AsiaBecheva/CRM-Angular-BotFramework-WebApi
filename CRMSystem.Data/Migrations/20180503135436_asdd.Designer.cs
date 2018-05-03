@@ -12,8 +12,8 @@ using System;
 namespace CRMSystem.Data.Migrations
 {
     [DbContext(typeof(CRMDbContext))]
-    [Migration("20180503130225_asd")]
-    partial class asd
+    [Migration("20180503135436_asdd")]
+    partial class asdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -86,7 +86,7 @@ namespace CRMSystem.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CRMSystem.Models.Product", "Product")
-                        .WithMany("Customers")
+                        .WithMany("SalledProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
