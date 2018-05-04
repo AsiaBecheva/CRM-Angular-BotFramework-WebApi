@@ -1,6 +1,4 @@
 ﻿using CRMSystem.Data;
-using CRMSystem.Data.Repository;
-using CRMSystem.Server.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.IISIntegration;
@@ -42,15 +40,13 @@ namespace CRMSystem.Server
 
             services.AddRouting(r => r.LowercaseUrls = true);
 
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            //services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.AddingMigration();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

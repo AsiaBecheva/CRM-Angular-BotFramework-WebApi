@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CRMSystem.Server.Controllers
 {
+    [Route("api/[controller]")]
     public class ProductController : Controller
     {
         public IActionResult Index()

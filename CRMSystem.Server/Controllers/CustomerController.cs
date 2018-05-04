@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using CRMSystem.Data.Repository;
+using CRMSystem.Data;
 using CRMSystem.Models;
 using CRMSystem.Services.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +11,9 @@ namespace CRMSystem.Server.Controllers
     [Route("api/[controller]")]
     public class CustomerController : Controller
     {
-        private readonly IUnitOfWork db;
+        private readonly CRMDbContext db;
 
-        public CustomerController(IUnitOfWork db)
+        public CustomerController(CRMDbContext db)
         {
             this.db = db;
         }
@@ -21,7 +21,7 @@ namespace CRMSystem.Server.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var customer = db.Customers.All()
+            var customer = db.Customers
                 .Where(x => x.Id == id)
                 .FirstOrDefault();
 
@@ -65,7 +65,7 @@ namespace CRMSystem.Server.Controllers
                 return this.BadRequest(ModelState);
             }
 
-            var customerForUpdate = this.db.Customers.GetById(id);
+            var customerForUpdate = this.db.Customers.Where(x => x.Id == id).FirstOrDefault();
 
             if (customerForUpdate == null)
             {
@@ -86,14 +86,14 @@ namespace CRMSystem.Server.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var customerForDelete = this.db.Customers.GetById(id);
+            var customerForDelete = this.db.Customers.Where(x => x.Id == id).FirstOrDefault();
 
             if (customerForDelete == null)
             {
                 return this.BadRequest();
             }
 
-            this.db.Customers.Delete(customerForDelete);
+            this.db.Customers.Remove(customerForDelete);
 
             return this.Ok("Customer was deleted!");
         }
