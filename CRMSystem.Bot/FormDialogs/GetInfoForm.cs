@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CRMSystem.Bot.Common;
 using CRMSystem.Bot.FormDialogs.Base;
+using CRMSystem.Models;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.FormFlow;
 
@@ -29,17 +31,24 @@ namespace CRMSystem.Bot.FormDialogs
                 var email = customer.Email;
                 DateTime addedOn = customer.AddedOn;
                 var status = customer.Status;
-                var salledProducts = customer.SalledProducts;
 
                 sb.AppendLine($"ID: {id};  ");
                 sb.AppendLine($"Phone: {phone};  ");
                 sb.AppendLine($"Email: {email};  ");
                 sb.AppendLine($"Added On: {addedOn};  ");
                 sb.AppendLine($"Status: {status};  ");
-                for (int i = 0; i < salledProducts.Count; i++)
+
+                var customerProducts = GetDatabase.GetContext().CustomerProducts.ToList();
+
+                var salProd = customerProducts.Where(p => p.CustomerId == customer.Id).ToList();
+
+                var products = GetProducts(customer);
+
+                for (int i = 0; i < products.Count; i++)
                 {
-                    sb.AppendLine($"Product{i + 1}: {salledProducts[i].Product.Name}.");
+                    sb.AppendLine($"Product {i + 1}: {products[i].Name}.    ");
                 }
+
 
                 await context.PostAsync(sb.ToString());
             }
@@ -48,6 +57,17 @@ namespace CRMSystem.Bot.FormDialogs
                .Field(nameof(ClientName))
                .OnCompletion(onProcessGetInfo)
                .Build();
+        }
+
+        private List<Product> GetProducts(Customer customer)
+        {
+            var products = GetDatabase.GetContext().Customers
+                    .Where(c => c.Id == customer.Id)
+                    .SelectMany(c => c.SalledProducts)
+                    .Select(cp => cp.Product)
+                    .ToList();
+
+            return products;
         }
     }
 }
