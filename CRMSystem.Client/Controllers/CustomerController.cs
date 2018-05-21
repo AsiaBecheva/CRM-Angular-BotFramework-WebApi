@@ -9,13 +9,22 @@ namespace CRMSystem.Server.Controllers
 {
     //[Authorize(Roles = "Employees", Policy = "OnlyEmployees")]
     [Route("api/[controller]")]
-    public class CustomerController : Controller
+    public class CustomersController : Controller
     {
         private readonly CRMDbContext db;
 
-        public CustomerController(CRMDbContext db)
+        public CustomersController(CRMDbContext db)
         {
             this.db = db;
+        }
+
+        public IActionResult Get()
+        {
+            var customers = this.db
+                .Customers
+                .ToList();
+
+            return this.Ok(customers);
         }
 
         [HttpGet("{id}")]
