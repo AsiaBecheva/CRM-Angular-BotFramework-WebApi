@@ -5,19 +5,25 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app/app.component';
+import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { CoreModule } from './components/core/core.module';
+import { UsersModule } from './components/users/users.module';
+import { CrmRouteModule } from './components/routes.module';
 
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent
+        NavMenuComponent,
+        HomeComponent,
     ],
     imports: [
         CommonModule,
-        HttpModule,
-        FormsModule,
         CoreModule,
+        HttpModule,
+        UsersModule,
+        CrmRouteModule,
+        FormsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },

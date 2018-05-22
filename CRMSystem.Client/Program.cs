@@ -1,8 +1,7 @@
-using CRMSystem.Client;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace CRMSystem.Server
+namespace CRMSystem.Client
 {
     public class Program
     {
