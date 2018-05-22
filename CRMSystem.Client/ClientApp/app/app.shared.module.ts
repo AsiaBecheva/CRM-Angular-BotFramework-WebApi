@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app/app.component';
 import { HomeComponent } from './components/home/home.component';
+import { CoreModule } from './components/core/core.module';
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import { HomeComponent } from './components/home/home.component';
         CommonModule,
         HttpModule,
         FormsModule,
+        CoreModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
