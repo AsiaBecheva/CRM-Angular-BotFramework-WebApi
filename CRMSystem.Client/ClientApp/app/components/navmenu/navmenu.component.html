@@ -23,6 +23,16 @@
                         <span class='glyphicon glyphicon-home'></span> Home
                     </a>
                 </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/customers/all']">
+                        <span class='glyphicon glyphicon-education'></span> Customers
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/products/all']">
+                        <span class='glyphicon glyphicon-education'></span> Products
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
