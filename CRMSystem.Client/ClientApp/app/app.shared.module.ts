@@ -10,7 +10,8 @@ import { CoreModule } from './components/core/core.module';
 import { UsersModule } from './components/users/users.module';
 import { CrmRouteModule } from './components/routes.module';
 import { HomeModule } from './components/home/home.module';
-import { CustomerModule } from './components/customers/customer.module'
+import { CustomerModule } from './components/customers/customer.module';
+import { ProductModule } from './components/products/product.module';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { CustomerModule } from './components/customers/customer.module'
     ],
     imports: [
         CommonModule,
+        ProductModule,
         CoreModule,
         HomeModule,
         HttpModule,
