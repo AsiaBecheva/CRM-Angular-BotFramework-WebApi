@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { CustomerData } from './customer.data';
 import 'rxjs/add/operator/toPromise';
 
-var url = 'http://localhost:54735/api/Customers/'
+var url = 'http://localhost:57087/api/Customers/'
 
 @Injectable()
 export class CustomerService {

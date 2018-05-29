@@ -1,6 +1,6 @@
 ﻿export class ProductData {
-    name: string;
-    price: number;
-    info: string;
+    name: string | undefined;
+    price: number | undefined;
+    info: string | undefined;
     saledProducts: any;
 }

@@ -8,7 +8,7 @@ import 'rxjs/add/operator/toPromise';
     templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit{
-    private productData: ProductData;
+    private productData: ProductData | undefined;
 
     constructor(private homeservice: HomeService) { }
 

@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
-import { CoreModule } from './components/core/core.module';
 import { UsersModule } from './components/users/users.module';
 import { CrmRouteModule } from './components/routes.module';
 import { HomeModule } from './components/home/home.module';
@@ -21,7 +20,6 @@ import { ProductModule } from './components/products/product.module';
     imports: [
         CommonModule,
         ProductModule,
-        CoreModule,
         HomeModule,
         HttpModule,
         UsersModule,

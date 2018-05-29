@@ -1,7 +1,7 @@
 ﻿export class CustomerData {
-    name: string;
-    status: string;
-    email: string;
-    phone: string;
+    name: string | undefined;
+    status: string | undefined;
+    email: string | undefined;
+    phone: string | undefined;
     salledProducts: any;
 }
