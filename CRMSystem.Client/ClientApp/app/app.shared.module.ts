@@ -6,11 +6,12 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
-import { UsersModule } from './components/users/users.module';
+import { UsersModule } from './components/users/user.profile.module';
 import { CrmRouteModule } from './components/routes.module';
 import { HomeModule } from './components/home/home.module';
 import { CustomerModule } from './components/customers/customer.module';
 import { ProductModule } from './components/products/product.module';
+import { SalesModule } from './components/sales/sales.module';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { ProductModule } from './components/products/product.module';
         HttpModule,
         UsersModule,
         CustomerModule,
+        SalesModule,
         CrmRouteModule,
         FormsModule,
         RouterModule.forRoot([

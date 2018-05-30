@@ -1,13 +1,10 @@
 ﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { UsersService } from './users.service';
-
-import { SignInComponent } from './signin.component';
+import { UserComponent } from './user.profile.component';
 
 @NgModule({
-    declarations: [SignInComponent],
-    providers: [UsersService],
+    declarations: [UserComponent],
     imports: [FormsModule]
 })
 export class UsersModule {
