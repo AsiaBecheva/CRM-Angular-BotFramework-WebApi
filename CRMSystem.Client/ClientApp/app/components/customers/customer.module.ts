@@ -7,7 +7,7 @@ import { CustomerComponent } from './customer.component';
 @NgModule({
     declarations: [CustomerComponent],
     providers: [CustomerService],
-    imports: [FormsModule],
+    imports: [FormsModule, CommonModule],
 })
 export class CustomerModule {
 

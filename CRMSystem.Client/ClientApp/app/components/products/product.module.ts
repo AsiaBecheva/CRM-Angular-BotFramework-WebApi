@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
     declarations: [ProductComponent],
     providers: [ProductService],
-    imports: [FormsModule]
+    imports: [FormsModule, CommonModule]
 })
 export class ProductModule {
 
