@@ -11,7 +11,7 @@ namespace CRMSystem.Bot.FormDialogs
     [Serializable]
     public class GetPhoneForm : BaseForm<GetPhoneForm>
     {
-        [Prompt("Please enter Client Name for phone number")]
+        [Prompt("Please enter Username for phone number")]
         public string ClientName { get; set; }
 
         public override IForm<GetPhoneForm> BuildForm()

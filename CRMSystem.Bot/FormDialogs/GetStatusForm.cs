@@ -11,7 +11,7 @@ namespace CRMSystem.Bot.FormDialogs
     [Serializable]
     public class GetStatusForm : BaseForm<GetStatusForm>
     {
-        [Prompt("Please enter Client Name for status")]
+        [Prompt("Please enter Username for status")]
         public string ClientName { get; set; }
 
         public override IForm<GetStatusForm> BuildForm()

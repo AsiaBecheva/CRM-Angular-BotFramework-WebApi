@@ -36,7 +36,7 @@ namespace CRMSystem.Bot.Dialogs
             {
                 username = context.Activity.From.Name;
             }
-            await context.PostAsync($"Hey {username}");
+            await context.PostAsync($"Hi! How may I help you?");
             context.Wait(MessageReceived);
         }
 

@@ -32,9 +32,9 @@ namespace CRMSystem.Bot
                         {
                             if (newMember.Id != activity.Recipient.Id)
                             {
-                                var reply = activity.CreateReply();
-                                reply.Text = $"Hello {newMember.Name}!";
-                                await client.Conversations.ReplyToActivityAsync(reply);
+                                //var reply = activity.CreateReply();
+                                //reply.Text = $"Hello {newMember.Name}!";
+                                //await client.Conversations.ReplyToActivityAsync(reply);
                             }
                         }
                     }
