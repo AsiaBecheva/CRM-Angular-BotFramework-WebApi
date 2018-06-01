@@ -12,9 +12,10 @@ using System;
 namespace CRMSystem.Data.Migrations
 {
     [DbContext(typeof(CRMDbContext))]
-    partial class CRMDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180601071757_customerChange")]
+    partial class customerChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

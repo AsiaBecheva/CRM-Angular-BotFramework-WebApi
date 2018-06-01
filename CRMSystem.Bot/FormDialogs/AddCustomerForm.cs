@@ -12,10 +12,31 @@ namespace CRMSystem.Bot.FormDialogs
     [Serializable]
     public class AddCustomerForm : BaseForm<AddCustomerForm>
     {
+        [MaxLength(100)]
+        [Prompt("Please enter Company")]
+        public string Company { get; set; }
+
         [Required]
         [MaxLength(100)]
-        [Prompt("Please enter Client Name.")]
-        public string Name { get; set; }
+        [Prompt("Please enter Username")]
+        public string Username { get; set; }
+        
+        [MaxLength(100)]
+        [Prompt("Please enter First name.")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        [Prompt("Please enter Last name")]
+        public string LastName { get; set; }
+        
+        [MaxLength(100)]
+        [Prompt("Please enter Address.")]
+        public string Address { get; set; }
+        
+        [MaxLength(100)]
+        [Prompt("Please enter City.")]
+        public string City { get; set; }
 
         [Prompt("Please enter Client Status.")]
         public Status Status { get; set; }
@@ -37,7 +58,12 @@ namespace CRMSystem.Bot.FormDialogs
 
                 Customer customer = new Customer
                 {
-                    Name = state.Name,
+                    Company = state.Company,
+                    FirstName = state.FirstName,
+                    LastName = state.LastName,
+                    Address = state.Address,
+                    City = state.City,
+                    Username = state.Username,
                     Phone = state.Phone,
                     Status = state.Status,
                     Email = state.Email,
@@ -49,7 +75,12 @@ namespace CRMSystem.Bot.FormDialogs
             }
 
             return new FormBuilder<AddCustomerForm>()
-                .Field(nameof(Name))
+                .Field(nameof(Username))
+                .Field(nameof(Company))
+                .Field(nameof(FirstName))
+                .Field(nameof(LastName))
+                .Field(nameof(Address))
+                .Field(nameof(City))
                 .Field(nameof(Phone))
                 .Field(nameof(Email))
                 .Field(nameof(Status))

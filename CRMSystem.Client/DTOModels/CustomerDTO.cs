@@ -7,7 +7,17 @@ namespace CRMSystem.DTOModels.Models
     [Serializable]
     public class CustomerDTO
     {
-        public string Name { get; set; }
+        public string Company { get; set; }
+
+        public string Username { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Address { get; set; }
+
+        public string City { get; set; }
 
         public Status Status { get; set; }
 

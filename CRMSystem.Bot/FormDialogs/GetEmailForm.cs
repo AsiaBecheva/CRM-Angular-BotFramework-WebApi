@@ -19,7 +19,7 @@ namespace CRMSystem.Bot.FormDialogs
 
             async Task onProcessGetEmail(IDialogContext context, GetEmailForm state)
             {
-                var customer = GetDatabase.GetContext().Customers.Where(c => c.Name == state.ClientName)
+                var customer = GetDatabase.GetContext().Customers.Where(c => c.Username == state.ClientName)
                 .FirstOrDefault();
 
                 var id = customer.Id;

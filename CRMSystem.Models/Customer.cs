@@ -16,16 +16,37 @@ namespace CRMSystem.Models
 
         [Required]
         [MaxLength(100)]
-        public string Name { get; set; }
+        public string Company { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        public string Username { get; set; }
+        
+        [MaxLength(40)]
+        public string Email { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        public string LastName { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        public string Address { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        public string City { get; set; }
+        
+        [MaxLength(20)]
+        public string Phone { get; set; }
 
         [Required]
         public Status Status { get; set; }
 
-        [MaxLength(20)]
-        public string Phone { get; set; }
-
-        [MaxLength(40)]
-        public string Email { get; set; }
 
         public DateTime AddedOn { get; set; }
 

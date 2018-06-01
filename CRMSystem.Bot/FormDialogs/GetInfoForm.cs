@@ -21,18 +21,29 @@ namespace CRMSystem.Bot.FormDialogs
         {
             async Task onProcessGetInfo(IDialogContext context, GetInfoForm state)
             {
-                var customer = GetDatabase.GetContext().Customers.Where(c => c.Name == state.ClientName)
+                var customer = GetDatabase.GetContext().Customers.Where(c => c.Username == state.ClientName)
                  .FirstOrDefault();
 
                 StringBuilder sb = new StringBuilder();
 
                 var id = customer.Id;
+                var username = customer.Username;
+                var company = customer.Company;
+                var firstName = customer.FirstName;
+                var lastName = customer.LastName;
+                var address = customer.LastName;
+                var city = customer.City;
                 var phone = customer.Phone;
                 var email = customer.Email;
                 DateTime addedOn = customer.AddedOn;
                 var status = customer.Status;
 
                 sb.AppendLine($"ID: {id};  ");
+                sb.AppendLine($"Username: {username};   ");
+                sb.AppendLine($"Company: {company};   ");
+                sb.AppendLine($"Name: {firstName + " " + lastName};   ");
+                sb.AppendLine($"Address: {address};   ");
+                sb.AppendLine($"City: {city};   ");
                 sb.AppendLine($"Phone: {phone};  ");
                 sb.AppendLine($"Email: {email};  ");
                 sb.AppendLine($"Added On: {addedOn};  ");

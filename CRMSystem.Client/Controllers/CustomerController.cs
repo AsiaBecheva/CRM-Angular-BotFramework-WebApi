@@ -53,7 +53,12 @@ namespace CRMSystem.Server.Controllers
 
             Customer customer = new Customer
             {
-                Name = model.Name,
+                Username = model.Username,
+                Company = model.Company,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Address = model.Address,
+                City = model.City,
                 Email = model.Email,
                 Phone = model.Phone,
                 Status = model.Status,
@@ -81,8 +86,13 @@ namespace CRMSystem.Server.Controllers
                 return BadRequest("There is no customer with such ID!");
             }
 
+            customerForUpdate.Username = model.Username;
+            customerForUpdate.Company = model.Company;
+            customerForUpdate.FirstName = model.FirstName;
+            customerForUpdate.LastName = model.LastName;
+            customerForUpdate.Address = model.Address;
             customerForUpdate.Email = model.Email;
-            customerForUpdate.Name = model.Name;
+            customerForUpdate.City = model.City;
             customerForUpdate.Phone = model.Phone;
             customerForUpdate.Status = model.Status;
 

@@ -18,7 +18,7 @@ namespace CRMSystem.Bot.FormDialogs
         {
             async Task onProcessGetStatus(IDialogContext context, GetStatusForm state)
             {
-                var customer = GetDatabase.GetContext().Customers.Where(c => c.Name == state.ClientName)
+                var customer = GetDatabase.GetContext().Customers.Where(c => c.Username == state.ClientName)
                 .FirstOrDefault();
 
                 var id = customer.Id;
