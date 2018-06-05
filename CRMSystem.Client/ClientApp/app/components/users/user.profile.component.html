@@ -65,7 +65,7 @@
                                     <h4 class="title">Add Customer Profile</h4>
                                 </div>
                                 <div class="content">
-                                    <form>
+                                    <form #customerForm="ngForm">
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <div class="form-group">
@@ -73,7 +73,11 @@
                                                     <input type="text" class="form-control" id="company" placeholder="Company" 
                                                            name="company"
                                                            [(ngModel)]="customer.company"
+                                                           #company="ngModel"
                                                            required>
+                                                    <div [hidden]="company.valid || company.pristine" class="alert alert-danger">
+                                                        Company is required!
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -82,7 +86,11 @@
                                                     <input type="text" id="username" class="form-control" placeholder="Username"
                                                            name="username"
                                                            [(ngModel)]="customer.username"
+                                                           #username="ngModel"
                                                            required>
+                                                    <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+                                                        Username is required!
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -98,10 +106,14 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="firstName">First Name</label>
-                                                    <input type="text" class="form-control" placeholder="Company" 
+                                                    <input type="text" class="form-control" placeholder="First name" 
                                                            name="firstName"
                                                            [(ngModel)]="customer.firstName"
+                                                           #firstName="ngModel"
                                                            required>
+                                                    <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+                                                        First name is required!
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -110,7 +122,11 @@
                                                     <input type="text" id="lastName" class="form-control" placeholder="Last Name" 
                                                            name="lastName"
                                                            [(ngModel)]="customer.lastName"
+                                                           #lastName="ngModel"
                                                            required>
+                                                    <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+                                                        Last name is required!
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,7 +137,11 @@
                                                     <input type="text" id="address" class="form-control" placeholder="Address" 
                                                            name="address"
                                                            [(ngModel)]="customer.address"
+                                                           #address="ngModel"
                                                            required>
+                                                    <div [hidden]="address.valid || address.pristine" class="alert alert-danger">
+                                                        Address is required!
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -129,9 +149,13 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="city">City</label>
-                                                    <input type="text" class="form-control" placeholder="City" id="city"
+                                                    <input type="text"  id="city" class="form-control" placeholder="City"
                                                            [(ngModel)]="customer.city"
+                                                           #city="ngModel"
                                                            required>
+                                                    <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
+                                                        City is required!
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">

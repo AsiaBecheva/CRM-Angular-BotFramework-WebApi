@@ -10,7 +10,8 @@ enum Status {
 
 @Component({
     selector: 'user',
-    templateUrl: './user.profile.component.html'
+    templateUrl: './user.profile.component.html',
+    styleUrls: ['user.profile.component.css']
 })
 export class UserComponent {
     customer = new CustomerData();
