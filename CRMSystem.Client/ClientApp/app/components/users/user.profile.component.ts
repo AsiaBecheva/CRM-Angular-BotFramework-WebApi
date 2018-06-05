@@ -1,5 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { CustomerData } from '../customers/customer.data';
+import { UserProfileActions } from './user.profile.actions';
 //import { CustomerService } from '../customers/customer.service';
 
 
@@ -14,7 +15,12 @@ enum Status {
     styleUrls: ['user.profile.component.css']
 })
 export class UserComponent {
-    customer = new CustomerData();
+    customer: CustomerData = new CustomerData();
+    constructor(private userProfileActions: UserProfileActions) { }
+
+    addCustomer() {
+        this.userProfileActions.addCustomer(this.customer)
+    }
 
     //status = Status;
     //keys: any;
