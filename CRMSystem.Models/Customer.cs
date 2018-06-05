@@ -21,7 +21,7 @@ namespace CRMSystem.Models
         [Required]
         [MaxLength(100)]
         public string Username { get; set; }
-        
+
         [MaxLength(40)]
         public string Email { get; set; }
 
@@ -40,11 +40,10 @@ namespace CRMSystem.Models
         [Required]
         [MaxLength(100)]
         public string City { get; set; }
-        
+
         [MaxLength(20)]
         public string Phone { get; set; }
 
-        [Required]
         public Status Status { get; set; }
 
 

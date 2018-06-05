@@ -17,7 +17,7 @@ export class CustomerComponent implements OnInit {
             .getData()
             .then(custData => {
                 console.log(custData);
-                this.customerData = custData
+                this.customerData = custData;
             })
     }
 }
