@@ -20,7 +20,7 @@ namespace CRMSystem.Bot.FormDialogs
         [MaxLength(100)]
         [Prompt("Please enter Username")]
         public string Username { get; set; }
-        
+
         [MaxLength(100)]
         [Prompt("Please enter First name.")]
         public string FirstName { get; set; }
@@ -29,11 +29,11 @@ namespace CRMSystem.Bot.FormDialogs
         [MaxLength(100)]
         [Prompt("Please enter Last name")]
         public string LastName { get; set; }
-        
+
         [MaxLength(100)]
         [Prompt("Please enter Address.")]
         public string Address { get; set; }
-        
+
         [MaxLength(100)]
         [Prompt("Please enter City.")]
         public string City { get; set; }
@@ -62,7 +62,6 @@ namespace CRMSystem.Bot.FormDialogs
                     FirstName = state.FirstName,
                     LastName = state.LastName,
                     Address = state.Address,
-                    City = state.City,
                     Username = state.Username,
                     Phone = state.Phone,
                     Status = state.Status,
@@ -80,7 +79,6 @@ namespace CRMSystem.Bot.FormDialogs
                 .Field(nameof(FirstName))
                 .Field(nameof(LastName))
                 .Field(nameof(Address))
-                .Field(nameof(City))
                 .Field(nameof(Phone))
                 .Field(nameof(Email))
                 .Field(nameof(Status))

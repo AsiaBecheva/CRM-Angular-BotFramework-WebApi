@@ -1,7 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { CustomerData } from '../customers/customer.data';
 import { UserProfileActions } from './user.profile.actions';
-//import { CustomerService } from '../customers/customer.service';
 
 
 enum Status {
@@ -21,26 +20,4 @@ export class UserComponent {
     addCustomer() {
         this.userProfileActions.addCustomer(this.customer)
     }
-
-    //status = Status;
-    //keys: any;
-
-    //constructor() {
-    //    this.keys = Object.keys(this.status).filter(Number);
-    //}
-
-
-    //data: CustomerData | undefined;
-
-    //constructor(private customerService: CustomerService) { }
-
-    //getCustomerData(): any {
-    //    this.customerService
-    //        .getData()
-    //        .then(custData => {
-    //            this.data = custData;
-    //        })
-    //}
-
-
 }

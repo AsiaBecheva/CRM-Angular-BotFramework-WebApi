@@ -32,7 +32,6 @@ namespace CRMSystem.Bot.FormDialogs
                 var firstName = customer.FirstName;
                 var lastName = customer.LastName;
                 var address = customer.LastName;
-                var city = customer.City;
                 var phone = customer.Phone;
                 var email = customer.Email;
                 DateTime addedOn = customer.AddedOn;
@@ -43,7 +42,6 @@ namespace CRMSystem.Bot.FormDialogs
                 sb.AppendLine($"Company: {company};   ");
                 sb.AppendLine($"Name: {firstName + " " + lastName};   ");
                 sb.AppendLine($"Address: {address};   ");
-                sb.AppendLine($"City: {city};   ");
                 sb.AppendLine($"Phone: {phone};  ");
                 sb.AppendLine($"Email: {email};  ");
                 sb.AppendLine($"Added On: {addedOn};  ");

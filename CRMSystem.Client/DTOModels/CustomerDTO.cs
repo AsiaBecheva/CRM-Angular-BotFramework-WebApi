@@ -17,8 +17,6 @@ namespace CRMSystem.DTOModels.Models
 
         public string Address { get; set; }
 
-        public string City { get; set; }
-
         public Status Status { get; set; }
 
         public string Phone { get; set; }

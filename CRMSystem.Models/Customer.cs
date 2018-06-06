@@ -37,10 +37,6 @@ namespace CRMSystem.Models
         [MaxLength(100)]
         public string Address { get; set; }
 
-        [Required]
-        [MaxLength(100)]
-        public string City { get; set; }
-
         [MaxLength(20)]
         public string Phone { get; set; }
 

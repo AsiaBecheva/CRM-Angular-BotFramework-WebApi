@@ -58,7 +58,6 @@ namespace CRMSystem.Server.Controllers
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Address = model.Address,
-                City = model.City,
                 Email = model.Email,
                 Phone = model.Phone,
                 Status = model.Status,
@@ -92,7 +91,6 @@ namespace CRMSystem.Server.Controllers
             customerForUpdate.LastName = model.LastName;
             customerForUpdate.Address = model.Address;
             customerForUpdate.Email = model.Email;
-            customerForUpdate.City = model.City;
             customerForUpdate.Phone = model.Phone;
             customerForUpdate.Status = model.Status;
 

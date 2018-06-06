@@ -1,16 +1,17 @@
 ﻿import { Injectable } from '@angular/core';
 import { UserProfileService } from './user.profile.service';
 import { CustomerData } from '../customers/customer.data';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserProfileActions {
-    constructor(private userProfileService: UserProfileService) { }
+    constructor(private userProfileService: UserProfileService, private router: Router) { }
 
     addCustomer(customer: CustomerData) {
         this.userProfileService
             .setData(customer)
-            .subscribe(result => {
-                console.log(result)
-            });
+            .subscribe(respoce => {
+                this.router.navigate(['/customers/all']);
+            })
     }
 }
