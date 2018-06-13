@@ -26,7 +26,7 @@
 
 > After adding a client to the system, the app will be redirected to the client list which have been added last. Into this list of customers - saled product can be selected and added. 
 
-![screenshot 16](https://user-images.githubusercontent.com/12658436/41351049-d3efcdf2-6f1d-11e8-9adf-309af0305f1f.png)
+![screenshot 17](https://user-images.githubusercontent.com/12658436/41359104-6f5ec93c-6f32-11e8-873c-1d27e195703c.png)
 
 
 <hr>
