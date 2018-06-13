@@ -31,7 +31,7 @@ namespace CRMSystem.Bot.FormDialogs
                 var company = customer.Company;
                 var firstName = customer.FirstName;
                 var lastName = customer.LastName;
-                var address = customer.LastName;
+                var address = customer.Address;
                 var phone = customer.Phone;
                 var email = customer.Email;
                 DateTime addedOn = customer.AddedOn;

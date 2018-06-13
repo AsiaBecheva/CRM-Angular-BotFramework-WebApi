@@ -1,3 +1,22 @@
-<h2 style="text-align: center">CRM with Chatbot</h2>
 
-![chatbot](https://user-images.githubusercontent.com/12658436/41335738-82a512de-6ef2-11e8-9972-c8641014464b.png)
+
+> <h2>Advantages of the Chatbot in CRM</h2>
+> The Chatbot can respond to queries in a speed which humans can never match.<br>
+> The Сhatbot allow you to reduce costs by hiring fewer people to staff call centers.<br>
+> The Chatbot is available 24/7;<br>
+> The Chatbot is integrated into messenger apps, where people spend most of their time online nowadays;
+<hr>
+
+<h2>Features</h2>
+
+* Bot is using LUIS(Language Understanding) and it may understand a sentences - for example 'I need phone number' or utterances like 'phone number'; If the question is correct the bot will ask for a username. If the username exist into the database the bol will give an answer with the data.
+
+* The application is responsive so sales team is mobile-enabled and can ask the bot for information.
+
+* In this web app the sales representatives have two options to add a customer data-via a web interface and via web chat.
+
+* After adding a client to the system, the app will be redirected to the client list which have been added last. Into this list of customers - saled product can be selected and added. 
+
+<span>![screenshot 11](https://user-images.githubusercontent.com/12658436/41349125-885411c4-6f17-11e8-95a7-07a0c293dd06.jpg)</span>
+
+<hr>
