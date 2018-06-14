@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using CRMSystem.Client.DTOModels;
 using CRMSystem.Data;
 using CRMSystem.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRMSystem.Client.Controllers
 {
@@ -29,16 +31,19 @@ namespace CRMSystem.Client.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var product = db.Products
-                .Where(x => x.Id == id)
-                .FirstOrDefault();
+            var products = db.Products
+                .SelectMany(x => x.SalledProducts.Where(y => y.CustomerId == id))
+                .Include(x => x.Customer)
+                .Include(x => x.Product)
+                .ToList();
 
-            if (product == null)
+
+            if (products == null)
             {
-                return this.NotFound("There is no customer with such ID!");
+                return this.NotFound("There are no products with such ID!");
             }
 
-            return this.Ok(product);
+            return this.Ok(products);
         }
 
         [HttpPost]
@@ -75,7 +80,7 @@ namespace CRMSystem.Client.Controllers
 
             if (productForUpdate == null)
             {
-                return BadRequest("There is no customer with such ID!");
+                return BadRequest("There is no product with such ID!");
             }
 
             productForUpdate.Info = model.Info;

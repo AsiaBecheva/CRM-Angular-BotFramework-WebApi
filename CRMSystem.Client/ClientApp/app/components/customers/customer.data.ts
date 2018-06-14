@@ -1,4 +1,5 @@
 ﻿export class CustomerData {
+    id: number | undefined;
     company: string | undefined;
     username: string | undefined;
     firstName: string | undefined;
