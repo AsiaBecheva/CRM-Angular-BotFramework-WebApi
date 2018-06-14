@@ -12,25 +12,25 @@ export class CustomerService {
 
     constructor(private http: Http) { }
 
-    getData(): Promise<CustomerData> {
+    getData(): Promise<Array<CustomerData>> {
         return this.http
             .get(urlCustomers)
             .toPromise()
-            .then(resp => resp.json() as CustomerData)
+            .then(resp => resp.json() as Array<CustomerData>)
             .catch(err => {
                 console.log(err);
-                return new CustomerData()
+                return []
             });
     }
 
-    getProductsData(customerId: number): Promise<ProductData> {
+    getProductsData(customerId: number): Promise<Array<ProductData>> {
         return this.http
             .get(urlProducts + customerId)
             .toPromise()
-            .then(resp => resp.json() as ProductData)
+            .then(resp => resp.json() as Array<ProductData>)
             .catch(err => {
                 console.log(err)
-                return new ProductData()
+                return []
             });
     }
 }

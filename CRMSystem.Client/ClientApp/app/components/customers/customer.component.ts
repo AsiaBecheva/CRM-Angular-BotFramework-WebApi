@@ -9,8 +9,8 @@ import 'rxjs/add/operator/toPromise';
     templateUrl: './customer.component.html'
 })
 export class CustomerComponent implements OnInit {
-    customerData: CustomerData | undefined;
-    productData: ProductData | undefined;
+    customerData: Array<CustomerData> | undefined;
+    productData: Array<ProductData> | undefined;
 
     constructor(private customerService: CustomerService) { }
 

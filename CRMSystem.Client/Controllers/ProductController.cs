@@ -33,8 +33,13 @@ namespace CRMSystem.Client.Controllers
         {
             var products = db.Products
                 .SelectMany(x => x.SalledProducts.Where(y => y.CustomerId == id))
-                .Include(x => x.Customer)
                 .Include(x => x.Product)
+                .Select(x => x.Product)
+                .Select(x => new {
+                    Name = x.Name,
+                    Info = x.Info,
+                    Price = x.Price
+                })
                 .ToList();
 
 
