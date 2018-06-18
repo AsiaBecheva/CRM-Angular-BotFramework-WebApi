@@ -2,6 +2,7 @@
 import { CustomerData } from './customer.data';
 import { ProductData } from '../home/product.data';
 import { CustomerService } from './customer.service';
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -12,7 +13,7 @@ export class CustomerComponent implements OnInit {
     customerData: Array<CustomerData> | undefined;
     productData: Array<ProductData> | undefined;
 
-    constructor(private customerService: CustomerService) { }
+    constructor(private customerService: CustomerService, private router: Router) { }
 
     ngOnInit(): void {
         this.customerService
@@ -22,20 +23,13 @@ export class CustomerComponent implements OnInit {
             })
     }
 
-    getProducts(id: number): void {
+    getProducts(id: number) {
         this.customerService
             .getProductsData(id)
-            .then(prodData => {
-                this.productData = prodData;
-                console.log(prodData);
+            .subscribe(resp => {
+                console.log(resp);
+                this.router.navigate(['/products/all']);
             })
     }
-
-    //getProducts(id: number) {
-    //    return this.http
-    //        .get(urlProducts + id)
-    //        .toPromise()
-    //        .then(resp => console.log(resp));
-    //}
 }
 

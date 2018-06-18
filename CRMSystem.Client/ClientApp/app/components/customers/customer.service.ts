@@ -23,14 +23,8 @@ export class CustomerService {
             });
     }
 
-    getProductsData(customerId: number): Promise<Array<ProductData>> {
+    getProductsData(customerId: number) {
         return this.http
-            .get(urlProducts + customerId)
-            .toPromise()
-            .then(resp => resp.json() as Array<ProductData>)
-            .catch(err => {
-                console.log(err)
-                return []
-            });
+            .get(urlProducts + customerId);
     }
 }
