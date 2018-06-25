@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using CRMSystem.Bot.Common;
 using CRMSystem.Bot.FormDialogs.Base;
+using CRMSystem.Data.Repository;
 using CRMSystem.Models;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.FormFlow;
@@ -54,7 +55,7 @@ namespace CRMSystem.Bot.FormDialogs
 
             async Task onProcessAddCustomer(IDialogContext context, AddCustomerForm state)
             {
-                var db = GetDatabase.GetContext();
+                GenericRepository<Customer> db = new GenericRepository<Customer>(GetDatabase.GetContext());
 
                 Customer customer = new Customer
                 {

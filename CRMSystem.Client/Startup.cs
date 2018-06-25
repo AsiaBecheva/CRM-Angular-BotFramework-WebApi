@@ -1,4 +1,5 @@
 using CRMSystem.Data;
+using CRMSystem.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.IISIntegration;
@@ -40,6 +41,7 @@ namespace CRMSystem.Client
             });
 
             services.AddRouting(r => r.LowercaseUrls = true);
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddMvc();
         }
 

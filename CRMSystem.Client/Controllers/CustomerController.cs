@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using CRMSystem.Data;
+using CRMSystem.Data.Repository;
 using CRMSystem.DTOModels.Models;
 using CRMSystem.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,9 @@ namespace CRMSystem.Server.Controllers
     [Route("api/[controller]")]
     public class CustomersController : Controller
     {
-        private readonly CRMDbContext db;
+        private readonly IUnitOfWork db;
 
-        public CustomersController(CRMDbContext db)
+        public CustomersController(IUnitOfWork db)
         {
             this.db = db;
         }
@@ -22,6 +23,7 @@ namespace CRMSystem.Server.Controllers
         {
             var customers = this.db
                 .Customers
+                .All()
                 .ToList();
 
             return this.Ok(customers);
@@ -31,8 +33,7 @@ namespace CRMSystem.Server.Controllers
         public IActionResult Get(int id)
         {
             var customer = db.Customers
-                .Where(x => x.Id == id)
-                .FirstOrDefault();
+                .GetById(id);
 
             if (customer == null)
             {
@@ -78,7 +79,7 @@ namespace CRMSystem.Server.Controllers
                 return this.BadRequest(ModelState);
             }
 
-            var customerForUpdate = this.db.Customers.Where(x => x.Id == id).FirstOrDefault();
+            var customerForUpdate = this.db.Customers.All().Where(x => x.Id == id).FirstOrDefault();
 
             if (customerForUpdate == null)
             {
@@ -103,14 +104,14 @@ namespace CRMSystem.Server.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var customerForDelete = this.db.Customers.Where(x => x.Id == id).FirstOrDefault();
+            var customerForDelete = this.db.Customers.All().Where(x => x.Id == id).FirstOrDefault();
 
             if (customerForDelete == null)
             {
                 return this.BadRequest();
             }
 
-            this.db.Customers.Remove(customerForDelete);
+            this.db.Customers.Delete(customerForDelete);
 
             return this.Ok("Customer was deleted!");
         }
