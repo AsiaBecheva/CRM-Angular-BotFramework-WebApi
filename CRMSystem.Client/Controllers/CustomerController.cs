@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using CRMSystem.Data;
 using CRMSystem.Data.Repository;
 using CRMSystem.DTOModels.Models;
 using CRMSystem.Models;
@@ -47,28 +46,41 @@ namespace CRMSystem.Server.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]CustomerDTO model)
         {
-            if (!this.ModelState.IsValid)
+            var createdResult = new CreatedResult("", null);
+            try
             {
-                return this.BadRequest(ModelState);
+                if (!this.ModelState.IsValid)
+                {
+                    return this.BadRequest(ModelState);
+                }
+
+                Customer customer = new Customer
+                {
+                    Username = model.Username,
+                    Company = model.Company,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Address = model.Address,
+                    Email = model.Email,
+                    Phone = model.Phone,
+                    Status = model.Status,
+                    AddedOn = DateTime.Now
+                };
+
+                this.db.Customers.Add(customer);
+                this.db.SaveChanges();
+
+                // return this.Created(this.Url.ToString(), customer);
+                return this.Ok(customer);
+
             }
-
-            Customer customer = new Customer
+            catch (Exception ex)
             {
-                Username = model.Username,
-                Company = model.Company,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Address = model.Address,
-                Email = model.Email,
-                Phone = model.Phone,
-                Status = model.Status,
-                AddedOn = DateTime.Now
-            };
+                var msg = ex.Message;
+                var st = ex.StackTrace;
 
-            this.db.Customers.Add(customer);
-            this.db.SaveChanges();
-
-            return this.Created(this.Url.ToString(), customer);
+                return this.BadRequest();
+            }
         }
 
         [HttpPut("{id}")]
