@@ -22,10 +22,14 @@ namespace CRMSystem.Server.Controllers
         {
             var customers = this.db
                 .Customers
-                .All()
-                .ToList();
+                .All();
 
-            return this.Ok(customers);
+            if (customers == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            return this.Ok(customers.ToList());
         }
 
         [HttpGet("{id}")]

@@ -1,18 +1,53 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using CRMSystem.Data.Repository;
 using CRMSystem.DTOModels.Models;
 using CRMSystem.Models;
 using CRMSystem.Server.Controllers;
+using CRMSystem.Tests.Mocks;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
 
 namespace CRMSystem.Tests
 {
+    [Trait("Category", "Customer")]
     public class CustomerControllerTest
     {
         [Fact]
-        public void Get_ReturnsNotFound_ForInvalidCustomerId()
+        public void Get_ReturnsNotFound_IfThereAreCustomersInDatabase()
+        {
+            // Arrange
+            var fakeData = new FakeData();
+            var mockRepo = new Mock<IUnitOfWork>();
+            mockRepo.Setup(repo => repo.Customers.All())
+                .Returns(fakeData.FakeCustomers.AsQueryable());
+            var sut = new CustomersController(mockRepo.Object);
+
+            // Act
+            var result = sut.Get();
+
+            // Assert
+            Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public void Get_ReturnsNotFound_IfThereAreNoCustomersInDatabase()
+        {
+            // Arrange
+            var mockRepo = new Mock<IUnitOfWork>();
+            var listCustomers = new List<Customer>();
+            mockRepo.Setup(repo => repo.Customers.All())
+                .Returns((IQueryable<Customer>)null);
+            var sut = new CustomersController(mockRepo.Object);
+
+            // Act & Assert
+            Assert.Throws<ArgumentNullException>(() => sut.Get());
+        }
+
+        [Fact]
+        public void GetById_ReturnsNotFound_ForInvalidCustomerId()
         {
             // Arrange
             int testId = 5;
@@ -56,7 +91,7 @@ namespace CRMSystem.Tests
             var result = sut.Get(testId);
 
             // Assert
-            Assert.IsType<OkObjectResult>(result);
+            var theResult = Assert.IsType<OkObjectResult>(result);
         }
 
         [Fact]
