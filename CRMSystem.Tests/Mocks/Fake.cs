@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CRMSystem.DTOModels.Models;
 using CRMSystem.Models;
 
 namespace CRMSystem.Tests.Mocks
@@ -13,6 +14,44 @@ namespace CRMSystem.Tests.Mocks
 
         public ICollection<Customer> FakeCustomers { get; set; }
 
+        public CustomerDTO CustomerDTO
+        {
+            get
+            {
+                return new CustomerDTO
+                {
+                    Address = "Some address",
+                    Company = "Some company",
+                    Email = "asia@gmail.com",
+                    FirstName = "Asya",
+                    LastName = "Becheva",
+                    Phone = "0888998899",
+                    Status = Status.active,
+                    Username = "asyaB",
+                };
+            }
+        }
+
+        public Customer Customer
+        {
+            get
+            {
+                return new Customer
+                {
+                    Id = 10,
+                    AddedOn = DateTime.Now,
+                    Address = "Some address",
+                    Company = "Some company",
+                    Email = "asia@gmail.com",
+                    FirstName = "Asya",
+                    LastName = "Becheva",
+                    Phone = "0888998899",
+                    Status = Status.active,
+                    Username = "asyaB",
+                };
+            }
+        }
+
         private void CreateFakeCustomers()
         {
             this.FakeCustomers = new List<Customer>
@@ -23,5 +62,7 @@ namespace CRMSystem.Tests.Mocks
                 new Customer { Id = 4, FirstName = "Georgi", LastName = "Georgiev", Address = "ul. Amazonka", Email = "goshogeorgiev@gmail.com", Company = "goshos company", Phone = "0887878787", Status = Status.inactive, AddedOn = DateTime.Now, Username = "goshoG" },
             };
         }
+
+
     }
 }

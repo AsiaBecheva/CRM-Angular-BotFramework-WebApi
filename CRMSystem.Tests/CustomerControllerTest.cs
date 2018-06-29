@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CRMSystem.Data.Repository;
-using CRMSystem.DTOModels.Models;
 using CRMSystem.Models;
 using CRMSystem.Server.Controllers;
 using CRMSystem.Tests.Mocks;
@@ -67,24 +66,12 @@ namespace CRMSystem.Tests
         public void Get_ReturnsOk_ForValidCustomerId()
         {
             // Arrange
-            int testId = 5;
-            var customer = new Customer
-            {
-                Id = 5,
-                AddedOn = DateTime.Now,
-                Address = "Some address",
-                Company = "Some company",
-                Email = "asia@gmail.com",
-                FirstName = "Asya",
-                LastName = "Becheva",
-                Phone = "0888998899",
-                Status = Status.active,
-                Username = "asyaB"
-            };
+            int testId = 1;
 
+            var fakeData = new FakeData();
             var mockRepo = new Mock<IUnitOfWork>();
             mockRepo.Setup(repo => repo.Customers.GetById(testId))
-                .Returns((customer));
+                .Returns((fakeData.FakeCustomers.First()));
             var sut = new CustomersController(mockRepo.Object);
 
             // Act 
@@ -109,46 +96,107 @@ namespace CRMSystem.Tests
             Assert.IsType<BadRequestObjectResult>(result);
         }
 
-        //[Fact]
-        //public void Post_VerifyThatResultIsOfTypeCreatedResultInCaseOfException()
-        //{
-        //    // Arrange
-        //    var mockRepo = new Mock<IUnitOfWork>();
-        //    mockRepo.Setup(x => x.Customers.Add(It.IsAny<Customer>())).Verifiable();
-        //    var sut = new CustomersController(mockRepo.Object);
-
-        //    // Act
-        //    var result = sut.Post(new CustomerDTO());
-
-        //    // Assert
-        //    Assert.IsType<BadRequestObjectResult>(result);
-        //}
-
         [Fact]
         public void Post_VerifyThatModelStateIsValid()
         {
             // Arrange
-            var customer = new CustomerDTO
-            {
-                Address = "Some address",
-                Company = "Some company",
-                Email = "asia@gmail.com",
-                FirstName = "Asya",
-                LastName = "Becheva",
-                Phone = "0888998899",
-                Status = Status.active,
-                Username = "asyaB",
-            };
-
+            var fakeRepo = new FakeData();
             var mockRepo = new Mock<IUnitOfWork>();
             mockRepo.Setup(x => x.Customers.Add(It.IsAny<Customer>())).Verifiable();
             var sut = new CustomersController(mockRepo.Object);
 
             // Act
-            var result = sut.Post(customer);
+            var result = sut.Post(fakeRepo.CustomerDTO);
 
             // Assert
             Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public void Update_ReturnBadRequest_GivenRequiredModel()
+        {
+            // Arrange
+            var mockRepo = new Mock<IUnitOfWork>();
+            var sut = new CustomersController(mockRepo.Object);
+            sut.ModelState.AddModelError("error", "some error");
+
+            // Act
+            var result = sut.Update(id: 0, model: null);
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
+
+        [Fact]
+        public void Update_VerifyThatModelStateIsValid()
+        {
+            // Arrange
+            var fakeRepo = new FakeData();
+            var mockRepo = new Mock<IUnitOfWork>();
+            mockRepo.Setup(repo => repo.Customers.All())
+                .Returns(fakeRepo.FakeCustomers.Where(x => x.Id == 1).AsQueryable());
+            mockRepo.Setup(repo => repo.Customers.Update(It.IsAny<Customer>())).Verifiable();
+
+            var sut = new CustomersController(mockRepo.Object);
+
+            // Act
+            var result = sut.Update(1, fakeRepo.CustomerDTO);
+
+            // Assert
+            Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public void Update_ReturnBadRequest_ForInvalidCustomerId()
+        {
+            // Arrange
+            var fakeRepo = new FakeData();
+            var mockRepo = new Mock<IUnitOfWork>();
+            mockRepo.Setup(repo => repo.Customers.All())
+                .Returns(fakeRepo.FakeCustomers.Where(x => x.Id == 100).AsQueryable());
+            mockRepo.Setup(repo => repo.Customers.Update(It.IsAny<Customer>())).Verifiable();
+
+            var sut = new CustomersController(mockRepo.Object);
+
+            // Act
+            var result = sut.Update(1, fakeRepo.CustomerDTO);
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
+
+        [Fact]
+        public void Delete_ReturnOk_ForValidCustomerId()
+        {
+            var fakeRepo = new FakeData();
+            var mockRepo = new Mock<IUnitOfWork>();
+            mockRepo.Setup(repo => repo.Customers.All())
+                .Returns(fakeRepo.FakeCustomers.Where(x => x.Id == 1).AsQueryable());
+            mockRepo.Setup(repo => repo.Customers.Delete(It.IsAny<Customer>())).Verifiable();
+            var sut = new CustomersController(mockRepo.Object);
+
+            // Act
+            var result = sut.Delete(1);
+
+            // Assert
+            Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public void Delete_ReturnBadRequest_ForInvalidCustomerId()
+        {
+            var fakeRepo = new FakeData();
+            var mockRepo = new Mock<IUnitOfWork>();
+            mockRepo.Setup(repo => repo.Customers.All())
+                .Returns(fakeRepo.FakeCustomers.Where(x => x.Id == 100).AsQueryable());
+            mockRepo.Setup(repo => repo.Customers.Delete(It.IsAny<Customer>())).Verifiable();
+            var sut = new CustomersController(mockRepo.Object);
+
+            // Act
+            var result = sut.Delete(1);
+
+            // Assert
+            Assert.IsType<BadRequestResult>(result);
         }
     }
 }

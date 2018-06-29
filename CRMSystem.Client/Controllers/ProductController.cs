@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using CRMSystem.Client.DTOModels;
-using CRMSystem.Data;
+using CRMSystem.Data.Repository;
 using CRMSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +11,9 @@ namespace CRMSystem.Client.Controllers
     [Route("api/[controller]")]
     public class ProductsController : Controller
     {
-        private readonly CRMDbContext db;
+        private readonly IUnitOfWork db;
 
-        public ProductsController(CRMDbContext db)
+        public ProductsController(IUnitOfWork db)
         {
             this.db = db;
         }
@@ -23,6 +22,7 @@ namespace CRMSystem.Client.Controllers
         {
             var products = this.db
                 .Products
+                .All()
                 .ToList();
 
             return this.Ok(products);
@@ -32,10 +32,12 @@ namespace CRMSystem.Client.Controllers
         public IActionResult Get(int id)
         {
             var products = db.Products
+                .All()
                 .SelectMany(x => x.SalledProducts.Where(y => y.CustomerId == id))
                 .Include(x => x.Product)
                 .Select(x => x.Product)
-                .Select(x => new {
+                .Select(x => new
+                {
                     Name = x.Name,
                     Info = x.Info,
                     Price = x.Price
@@ -81,7 +83,8 @@ namespace CRMSystem.Client.Controllers
                 return this.BadRequest(ModelState);
             }
 
-            var productForUpdate = this.db.Products.Where(x => x.Id == id).FirstOrDefault();
+            var productForUpdate = this.db.Products
+                .GetById(id);
 
             if (productForUpdate == null)
             {
@@ -102,14 +105,18 @@ namespace CRMSystem.Client.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var productForDelete = this.db.Products.Where(x => x.Id == id).FirstOrDefault();
+            var productForDelete = this.db.Products
+                .All()
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
 
             if (productForDelete == null)
             {
                 return this.BadRequest();
             }
 
-            this.db.Products.Remove(productForDelete);
+            this.db.Products
+                .Delete(productForDelete);
 
             return this.Ok("Product was deleted!");
         }
