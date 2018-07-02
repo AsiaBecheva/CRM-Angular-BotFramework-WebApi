@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using CRMSystem.Client.DTOModels;
 using CRMSystem.Data.Repository;
 using CRMSystem.Models;
@@ -22,10 +23,15 @@ namespace CRMSystem.Client.Controllers
         {
             var products = this.db
                 .Products
-                .All()
-                .ToList();
+                .All();
 
-            return this.Ok(products);
+
+            if (products == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            return this.Ok(products.ToList());
         }
 
         [HttpGet("{id}")]
@@ -45,7 +51,7 @@ namespace CRMSystem.Client.Controllers
                 .ToList();
 
 
-            if (products == null)
+            if (products.Count == 0)
             {
                 return this.NotFound("There are no products with such ID!");
             }
@@ -72,7 +78,7 @@ namespace CRMSystem.Client.Controllers
             this.db.Products.Add(product);
             this.db.SaveChanges();
 
-            return this.Created(this.Url.ToString(), product);
+            return this.Ok(product);
         }
 
         [HttpPut("{id}")]
@@ -83,8 +89,7 @@ namespace CRMSystem.Client.Controllers
                 return this.BadRequest(ModelState);
             }
 
-            var productForUpdate = this.db.Products
-                .GetById(id);
+            var productForUpdate = this.db.Products.All().Where(pr => pr.Id == id).FirstOrDefault();
 
             if (productForUpdate == null)
             {

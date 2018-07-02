@@ -15,7 +15,7 @@ namespace CRMSystem.Tests
     public class CustomerControllerTest
     {
         [Fact]
-        public void Get_ReturnsNotFound_IfThereAreCustomersInDatabase()
+        public void Get_ReturnsOK_IfThereAreCustomersInDatabase()
         {
             // Arrange
             var fakeData = new FakeData();
@@ -32,7 +32,7 @@ namespace CRMSystem.Tests
         }
 
         [Fact]
-        public void Get_ReturnsNotFound_IfThereAreNoCustomersInDatabase()
+        public void Get_ReturnsArgumentNullException_IfThereAreNoCustomersInDatabase()
         {
             // Arrange
             var mockRepo = new Mock<IUnitOfWork>();
@@ -67,7 +67,6 @@ namespace CRMSystem.Tests
         {
             // Arrange
             int testId = 1;
-
             var fakeData = new FakeData();
             var mockRepo = new Mock<IUnitOfWork>();
             mockRepo.Setup(repo => repo.Customers.GetById(testId))
@@ -78,7 +77,7 @@ namespace CRMSystem.Tests
             var result = sut.Get(testId);
 
             // Assert
-            var theResult = Assert.IsType<OkObjectResult>(result);
+            Assert.IsType<OkObjectResult>(result);
         }
 
         [Fact]
@@ -193,7 +192,7 @@ namespace CRMSystem.Tests
             var sut = new CustomersController(mockRepo.Object);
 
             // Act
-            var result = sut.Delete(1);
+            var result = sut.Delete(100);
 
             // Assert
             Assert.IsType<BadRequestResult>(result);
